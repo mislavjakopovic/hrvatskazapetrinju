@@ -1,10 +1,17 @@
 {% extends '@root/base.html.twig' %}
 
-{% block title %} {{ platform.full_name }} {% endblock %}
+{% block title %} List by type {% endblock %}
 
 {% block body %}
     <section class="section">
         <div class="section-body">
+            <div class="row">
+                <div class="col-12 offset-md-6 col-md-6 offset-lg-6 col-lg-6">
+                    <div class="offset-lg-9">
+                        <a href="#" class="btn btn-lg btn-icon icon-left btn-primary"><i class="far fa-edit"></i> Primary</a>
+                    </div>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-12 col-md-6 col-lg-6">
                     <div class="card">
@@ -22,15 +29,16 @@
                         </a>
                     </div>
                 </div>
+
                 <div class="col-12 col-md-6 col-lg-6">
                     <div class="card">
-                        <a class="card-body" href="{{ path('post_list_by_type', { type: 'offering' }) }}">
+                        <a class="card-body" href="{{ path('post_list_by_type', { type: 'looking' }) }}">
                             <div class="empty-state" data-height="500" style="height: 400px;">
-                                <img class="img-fluid" src="{{ asset('assets/images/drawkit/storefront-colour.svg') }}"
+                                <img class="img-fluid" src="{{ asset('assets/images/drawkit/hiker-man-colour.svg') }}"
                                      alt="image">
                             </div>
                             <div style="text-align: center">
-                                <h2 class="mt-0">Nudim</h2>
+                                <h2 class="mt-0">Tražim</h2>
                                 <p class="lead">
                                     Neki tekst o trazenju..
                                 </p>
@@ -39,11 +47,11 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </section>
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
-    {{ encore_entry_script_tags('js/pages/home') }}
 {% endblock %}
