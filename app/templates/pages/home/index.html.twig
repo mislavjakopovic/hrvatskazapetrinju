@@ -1,0 +1,16 @@
+{% extends '@root/base.html.twig' %}
+
+{% block title %} {{ platform.full_name }} {% endblock %}
+
+{% block body %}
+
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}0
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('js/pages/home') }}
+{% endblock %}

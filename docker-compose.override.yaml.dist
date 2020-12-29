@@ -1,0 +1,9 @@
+version: '3'
+services:
+    nginx-hzp:
+        ports:
+            - 80:80
+            - 21080:80
+    mariadb-hzp:
+        ports:
+            - 21306:3306

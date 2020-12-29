@@ -1,0 +1,6 @@
+twig:
+    default_path: '%kernel.project_dir%/templates/pages'
+    paths:
+        '%kernel.project_dir%/templates/': root
+    globals:
+        platform: '%platform%'
