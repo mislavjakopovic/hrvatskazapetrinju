@@ -15,6 +15,19 @@ use Symfony\Component\Routing\Annotation\Route;
 class PostController extends AbstractBaseController
 {
     /**
+     * @var PostManager
+     */
+    protected $postManager;
+
+    /**
+     * @param PostManager $postManager
+     */
+    public function __construct(PostManager $postManager)
+    {
+        $this->postManager = $postManager;
+    }
+
+    /**
      * @Route("/posts", name="post_index")
      */
     public function index(): Response
@@ -33,7 +46,7 @@ class PostController extends AbstractBaseController
      *
      * @throws \Exception
      */
-    public function listByIntent(string $intent,  PostManager $postManager): Response
+    public function listByIntent(string $intent): Response
     {
         $this->checkIntent($intent);
 
@@ -41,7 +54,7 @@ class PostController extends AbstractBaseController
             'post/list.html.twig',
             [
                 'intent' => $intent,
-                'posts' => $postManager->getActivePosts($intent)
+                'posts' => $this->postManager->getActivePosts($intent)
             ]
         );
     }
@@ -56,7 +69,7 @@ class PostController extends AbstractBaseController
      *
      * @throws \Exception
      */
-    public function createByIntent(string $intent, Request $request, PostManager $postManager): Response
+    public function createByIntent(string $intent, Request $request): Response
     {
         $this->checkIntent($intent);
 
@@ -66,7 +79,7 @@ class PostController extends AbstractBaseController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $postManager->createPost($intent, $post);
+            $this->postManager->createPost($intent, $post);
             $this->addFlash('success', 'Post created successfully!');
 
             return $this->redirectToRoute('post_list_by_intent', ['intent' => $intent]);
@@ -78,6 +91,26 @@ class PostController extends AbstractBaseController
             [
                 'intent' => $intent,
                 'form' => $form->createView()
+            ]
+        );
+    }
+
+    /**
+     * @Route("/view/{id}", methods={"GET"}, name="post_view_by_id")
+     *
+     * @param Post $post
+     *
+     * @return Response
+     *
+     */
+    public function viewById(Post $post): Response
+    {
+        $this->postManager->incrementView($post);
+
+        return $this->render(
+            'post/view.html.twig',
+            [
+                'post' => $post
             ]
         );
     }

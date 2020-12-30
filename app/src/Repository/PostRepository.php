@@ -13,4 +13,12 @@ class PostRepository extends BaseRepository
     {
         parent::__construct($registry, Post::class);
     }
+
+    public function incrementView(Post $post)
+    {
+        $this->getEntityManager()
+            ->createQuery("UPDATE App\Entity\Post p SET p.views = p.views + 1 WHERE p.id = :id")
+            ->setParameter('id', $post->getId())
+            ->getResult();
+    }
 }

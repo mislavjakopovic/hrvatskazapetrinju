@@ -33,8 +33,27 @@ class PostManager
 
     public function getActivePosts(string $intent): ?array
     {
-        $posts = $this->postRepository->findBy(['intent' => $intent, 'status' => PostStatusEnum::PENDING]);
+        $posts = $this->postRepository->findBy(
+            ['intent' => $intent, 'status' => PostStatusEnum::PENDING],
+            ['createdAt' => 'DESC']
+        );
 
         return $posts;
+    }
+
+    public function getLatestPosts(): ?array
+    {
+        $posts = $this->postRepository->findBy(
+            ['status' => PostStatusEnum::PENDING],
+            ['createdAt' => 'DESC'],
+            8
+        );
+
+        return $posts;
+    }
+
+    public function incrementView(Post $post)
+    {
+        $this->postRepository->incrementView($post);
     }
 }

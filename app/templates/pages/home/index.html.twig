@@ -3,8 +3,8 @@
 {% block title %} {{ platform.full_name }} {% endblock %}
 
 {% block body %}
-{#    <section class="section mt-sm-0 mt-5">#}
-{#        <div class="section-body">#}
+    <section class="section mt-sm-0 mt-5">
+        <div class="section-body">
             <div class="row">
                 <div class="col-12 col-md-6 col-lg-6 mt-5 mt-lg-0">
                     <div class="card">
@@ -39,8 +39,39 @@
                     </div>
                 </div>
             </div>
-{#        </div>#}
-{#    </section>#}
+            <div class="row">
+                {% for post in posts %}
+                    <div class="col-12 col-sm-6 col-md-6 col-lg-3">
+                        <article class="article article-style-c">
+                            <div class="article-header">
+                                <div class="article-image" data-background="{{ asset('images/news/img13.jpg') }}"></div>
+                            </div>
+                            <div class="article-details">
+                                <div class="article-category">
+                                    <a href="#">{{ post.category }}</a>
+                                    <div class="bullet"></div>
+                                    <a href="#">{{ post.createdAt|date('d.m.Y h:i') }}</a>
+                                </div>
+                                <div class="article-title">
+                                    <h2><a href="{{ path('post_view_by_id', {'id': post.id}) }}">{{ post.title|truncate(64, true) }}</a></h2>
+                                </div>
+                                <p>{{ post.content|striptags|truncate(100, true) }} </p>
+                                <div class="article-user">
+                                    <img alt="image" src="{{ asset('images/avatar/avatar-1.png') }}">
+                                    <div class="article-user-details">
+                                        <div class="user-detail-name">
+                                            <a href="#">{{ post.author }}</a>
+                                        </div>
+                                        <div class="text-job">Web Developer</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
 {% endblock %}
 
 {% block javascripts %}
