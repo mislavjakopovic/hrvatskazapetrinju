@@ -13,14 +13,30 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class PostType extends AbstractType
 {
+    /**
+     * @var TranslatorInterface
+     */
+    protected $translator;
+
+    /**
+     * @param TranslatorInterface $translator
+     */
+    public function __construct(TranslatorInterface $translator)
+    {
+        $this->translator = $translator;
+    }
+
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $translator = $this->translator;
+
         $builder
             ->add('title', TextType::class, [
                 'required' => true,
@@ -31,8 +47,8 @@ class PostType extends AbstractType
             ->add('category', ChoiceType::class, [
                 'required' => true,
                 'choices' => PostCategoryEnum::INTENT_CATEGORIES[$options['intent']],
-                'choice_label' => function ($choice) {
-                    return PostCategoryEnum::READABLE[$choice];
+                'choice_label' => function ($choice) use ($translator) {
+                    return $translator->trans($choice);
                 },
             ])
             ->add('content', TextareaType::class, [

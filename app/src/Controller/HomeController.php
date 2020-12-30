@@ -25,6 +25,8 @@ class HomeController extends AbstractBaseController
 
     /**
      * @Route("/", name="home_index")
+     *
+     * @return Response
      */
     public function index(): Response
     {

@@ -6,11 +6,18 @@
     <section class="section mt-5 mt-md-5 mt-lg-1 mt-sm-5">
         <div class="section-body">
             <div class="row">
-                <div class="col-12 offset-md-6 col-md-6 offset-lg-6 col-lg-6 mt-3 mt-lg-0">
+                <div class="col-lg-4">
+                    {% if intent|trans == 'looking' %}
+                        <h2>Potražnja</h2>
+                    {% elseif intent|trans == 'offering' %}
+                        <h2>Ponuda</h2>
+                    {% endif %}
+                </div>
+                <div class="col-8 offset-md-6 col-md-6 offset-lg-2 col-lg-6 mt-3 mt-lg-0">
                     <div class="offset-lg-8 offset-md-1 mb-4">
                         <a href="{{ path('post_create_by_intent', {'intent':intent}) }}"
                            class="btn btn-block btn-lg btn-icon icon-left btn-primary"><i
-                                    class="far fa-edit"></i> Stvori novu</a>
+                                    class="far fa-edit"></i> Stvori objavu</a>
                     </div>
                 </div>
             </div>
@@ -23,7 +30,7 @@
                             </div>
                             <div class="article-details">
                                 <div class="article-category">
-                                    <a href="#">{{ post.category }}</a>
+                                    <a href="#">{{ post.category|trans }}</a>
                                     <div class="bullet"></div>
                                     <a href="#">{{ post.createdAt|date('d.m.Y h:i') }}</a>
                                 </div>

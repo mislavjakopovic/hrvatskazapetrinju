@@ -9,11 +9,6 @@ class PostIntentEnum
     public const LOOKING = 'looking';
     public const OFFERING = 'offering';
 
-    public const READABLE = [
-        self::LOOKING => 'Tražim',
-        self::OFFERING => 'Nudim'
-    ];
-
     public static function getAvailableIntents()
     {
         return [

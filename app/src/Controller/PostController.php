@@ -10,7 +10,9 @@ use App\Form\PostType;
 use App\Manager\PostManager;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class PostController extends AbstractBaseController
 {
@@ -20,25 +22,25 @@ class PostController extends AbstractBaseController
     protected $postManager;
 
     /**
-     * @param PostManager $postManager
+     * @var TranslatorInterface
      */
-    public function __construct(PostManager $postManager)
+    protected $translator;
+
+    /**
+     * @param PostManager $postManager
+     * @param TranslatorInterface $translator
+     */
+    public function __construct(PostManager $postManager, TranslatorInterface $translator)
     {
         $this->postManager = $postManager;
+        $this->translator = $translator;
     }
 
     /**
-     * @Route("/posts", name="post_index")
-     */
-    public function index(): Response
-    {
-        return $this->render(
-            'post/index.html.twig'
-        );
-    }
-
-    /**
-     * @Route("/{intent}", name="post_list_by_intent")
+     * @Route({
+     *     "hr": "/objave/{intent}",
+     *     "en": "/posts/{intent}"
+     * }, name="post_list_by_intent")
      *
      * @param string $intent
      *
@@ -48,19 +50,22 @@ class PostController extends AbstractBaseController
      */
     public function listByIntent(string $intent): Response
     {
-        $this->checkIntent($intent);
+        $intent = $this->transformIntent($intent);
 
         return $this->render(
             'post/list.html.twig',
             [
-                'intent' => $intent,
+                'intent' => $this->translator->trans($intent),
                 'posts' => $this->postManager->getActivePosts($intent)
             ]
         );
     }
 
     /**
-     * @Route("/create/{intent}", name="post_create_by_intent")
+     * @Route({
+     *     "hr": "/objavi/{intent}",
+     *     "en": "/create/{intent}"
+     * }, name="post_create_by_intent")
      *
      * @param string $intent
      * @param Request $request
@@ -71,7 +76,7 @@ class PostController extends AbstractBaseController
      */
     public function createByIntent(string $intent, Request $request): Response
     {
-        $this->checkIntent($intent);
+        $intent = $this->transformIntent($intent);
 
         $post = new Post();
         $form = $this->createForm(PostType::class, $post, ['intent' => $intent]);
@@ -85,18 +90,20 @@ class PostController extends AbstractBaseController
             return $this->redirectToRoute('post_list_by_intent', ['intent' => $intent]);
         }
 
-
         return $this->render(
             'post/create.html.twig',
             [
-                'intent' => $intent,
+                'intent' => $this->translator->trans($intent),
                 'form' => $form->createView()
             ]
         );
     }
 
     /**
-     * @Route("/view/{id}", methods={"GET"}, name="post_view_by_id")
+     * @Route({
+     *     "hr": "/objava/{id}",
+     *     "en": "/view/{id}"
+     * }, methods={"GET"}, name="post_view_by_id")
      *
      * @param Post $post
      *
@@ -115,10 +122,31 @@ class PostController extends AbstractBaseController
         );
     }
 
-    protected function checkIntent(string $intent): void
+    /**
+     * @param string $intent
+     *
+     * @return string
+     *
+     * @throws \Exception
+     */
+    protected function transformIntent(string $intent): string
+    {
+        $intent = $this->translator->trans($intent, [], null, 'en');
+
+        $this->validateIntent($intent);
+
+        return $intent;
+    }
+
+    /**
+     * @param string $intent
+     *
+     * @throws \Exception
+     */
+    protected function validateIntent(string $intent)
     {
         if (!in_array($intent, PostIntentEnum::getAvailableIntents())) {
-            throw new \Exception('Intent is not valid, maybe redirect me to homepage gracefully?');
+            throw new NotFoundHttpException($this->translator->trans('error_404'));
         }
     }
 }
