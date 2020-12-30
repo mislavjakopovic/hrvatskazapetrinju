@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d42ecdaa11572c5df6d81dd4d51f1e19",
+    "content-hash": "d614422cacf3d453fadce115d313bd76",
     "packages": [
         {
             "name": "composer/package-versions-deprecated",
@@ -1622,6 +1622,10 @@
                 "pager",
                 "paginator"
             ],
+            "support": {
+                "issues": "https://github.com/KnpLabs/knp-components/issues",
+                "source": "https://github.com/KnpLabs/knp-components/tree/v3.0.0"
+            },
             "time": "2020-11-30T09:24:34+00:00"
         },
         {

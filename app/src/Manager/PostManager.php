@@ -7,6 +7,8 @@ namespace App\Manager;
 use App\Entity\Post;
 use App\Enum\PostStatusEnum;
 use App\Repository\PostRepository;
+use Knp\Component\Pager\Pagination\PaginationInterface;
+use Knp\Component\Pager\PaginatorInterface;
 
 class PostManager
 {
@@ -16,11 +18,18 @@ class PostManager
     protected $postRepository;
 
     /**
-     * @param PostRepository $postRepository
+     * @var PaginatorInterface
      */
-    public function __construct(PostRepository $postRepository)
+    protected $paginator;
+
+    /**
+     * @param PostRepository $postRepository
+     * @param PaginatorInterface $paginator
+     */
+    public function __construct(PostRepository $postRepository, PaginatorInterface $paginator)
     {
         $this->postRepository = $postRepository;
+        $this->paginator = $paginator;
     }
 
     public function createPost(string $intent, Post $post)
@@ -33,23 +42,28 @@ class PostManager
 
     public function getActivePosts(string $intent): ?array
     {
-        $posts = $this->postRepository->findBy(
+        return $this->postRepository->findBy(
             ['intent' => $intent, 'status' => PostStatusEnum::PENDING],
             ['createdAt' => 'DESC']
         );
-
-        return $posts;
     }
 
-    public function getLatestPosts(): ?array
+    public function getActivePostsPaginated(string $intent, int $page, int $perPage): ?PaginationInterface
     {
-        $posts = $this->postRepository->findBy(
+        return $this->paginator->paginate(
+            $this->getActivePosts($intent),
+            $page,
+            $perPage
+        );
+    }
+
+    public function getLatestPosts(int $limit): ?array
+    {
+        return $this->postRepository->findBy(
             ['status' => PostStatusEnum::PENDING],
             ['createdAt' => 'DESC'],
-            8
+            $limit
         );
-
-        return $posts;
     }
 
     public function incrementView(Post $post)

@@ -10,6 +10,8 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractBaseController
 {
+    protected const LATEST_POSTS = 8;
+
     /**
      * @var PostManager
      */
@@ -33,7 +35,7 @@ class HomeController extends AbstractBaseController
         return $this->render(
             'home/index.html.twig',
             [
-                'posts' => $this->postManager->getLatestPosts()
+                'posts' => $this->postManager->getLatestPosts(self::LATEST_POSTS)
             ]
         );
     }

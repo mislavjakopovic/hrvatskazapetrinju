@@ -8,17 +8,16 @@ use App\Entity\Post;
 use App\Enum\PostIntentEnum;
 use App\Form\PostType;
 use App\Manager\PostManager;
-use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
-use Pagerfanta\Pagerfanta;
-use Pagerfanta\Adapter\ArrayAdapter;
 
 class PostController extends AbstractBaseController
 {
+    protected const POSTS_PER_PAGE = 6;
+
     /**
      * @var PostManager
      */
@@ -53,28 +52,20 @@ class PostController extends AbstractBaseController
      *
      * @throws \Exception
      */
-    public function listByIntent(string $intent,  PostManager $postManager, Request $request, PaginatorInterface $paginator): Response
+    public function listByIntent(string $intent, Request $request): Response
     {
         $intent = $this->transformIntent($intent);
-        /**Get the current page**/
         $page = intval($request->get('page'));
-
-        /**Amount of items per page**/
-        $perPage = 6;
-
-        if(!$page){
-            $page = 1;
-        }
-
-        $posts = $postManager->getActivePosts($intent);
-
-        $pagination = $paginator->paginate($posts, $page, $perPage);
 
         return $this->render(
             'post/list.html.twig',
             [
                 'intent' => $this->translator->trans($intent),
-                'posts' => $pagination
+                'posts' => $this->postManager->getActivePostsPaginated(
+                    $intent,
+                    $page ? $page : 1,
+                    self::POSTS_PER_PAGE
+                )
             ]
         );
     }
