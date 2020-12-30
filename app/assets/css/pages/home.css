@@ -1,0 +1,9 @@
+@media (min-width: 1024px) {
+    .navbar-bg{
+        height: 50px !important;
+    }
+}
+
+.navbar-bg{
+    height: 50px;
+}

@@ -15,6 +15,9 @@ Encore
     .addEntry('css/components', './assets/components.js')
     .addEntry('css/reverse', './assets/reverse.js')
 
+    /* Custom CSS */
+    .addEntry('css/pages/home', './assets/css/pages/home.css')
+
     /* Custom JS */
     .addEntry('js/init/scripts', './assets/js/inits/scripts.init.js')
     .addEntry('js/init/stisla', './assets/js/inits/stisla.init.js')
