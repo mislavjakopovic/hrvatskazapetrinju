@@ -43,7 +43,7 @@ class PostManager
     public function createPost(string $intent, Post $post)
     {
         $post->setIntent($intent);
-        $post->setStatus(PostStatusEnum::PENDING);
+        $post->setStatus(PostStatusEnum::ACTIVE);
         $post->setCreatedAt(new \DateTime());
         $this->postRepository->save($post);
     }
@@ -51,7 +51,7 @@ class PostManager
     public function getActivePosts(string $intent): ?array
     {
         return $this->postRepository->findBy(
-            ['intent' => $intent, 'status' => PostStatusEnum::PENDING],
+            ['intent' => $intent, 'status' => PostStatusEnum::ACTIVE],
             ['createdAt' => 'DESC']
         );
     }
@@ -69,7 +69,7 @@ class PostManager
     public function getLatestPosts(int $limit): ?array
     {
         return $this->postRepository->findBy(
-            ['status' => PostStatusEnum::PENDING],
+            ['status' => PostStatusEnum::ACTIVE],
             ['createdAt' => 'DESC'],
             $limit
         );
