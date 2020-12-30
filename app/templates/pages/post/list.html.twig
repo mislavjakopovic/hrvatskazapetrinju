@@ -32,7 +32,7 @@
                                 <div class="article-category">
                                     <a href="#">{{ post.category|trans }}</a>
                                     <div class="bullet"></div>
-                                    <a href="#">{{ post.createdAt|date('d.m.Y h:i') }}</a>
+                                    <a href="#">{{ post.createdAt|elapsed }}</a>
                                 </div>
                                 <div class="article-title">
                                     <h2><a href="{{ path('post_view_by_id', {'id': post.id}) }}">{{ post.title|truncate(64, true) }}</a></h2>

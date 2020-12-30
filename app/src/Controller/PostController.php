@@ -24,18 +24,14 @@ class PostController extends AbstractBaseController
     protected $postManager;
 
     /**
-     * @var TranslatorInterface
-     */
-    protected $translator;
-
-    /**
      * @param PostManager $postManager
      * @param TranslatorInterface $translator
      */
     public function __construct(PostManager $postManager, TranslatorInterface $translator)
     {
         $this->postManager = $postManager;
-        $this->translator = $translator;
+
+        parent::__construct($translator);
     }
 
     /**
@@ -55,7 +51,8 @@ class PostController extends AbstractBaseController
     public function listByIntent(string $intent, Request $request): Response
     {
         $intent = $this->transformIntent($intent);
-        $page = intval($request->get('page'));
+
+        $page = $this->getQueryParam($request, 'page', 'intval');
 
         return $this->render(
             'post/list.html.twig',

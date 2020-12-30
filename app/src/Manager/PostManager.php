@@ -9,6 +9,7 @@ use App\Enum\PostStatusEnum;
 use App\Repository\PostRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class PostManager
 {
@@ -23,13 +24,20 @@ class PostManager
     protected $paginator;
 
     /**
+     * @var TranslatorInterface
+     */
+    protected $translator;
+
+    /**
      * @param PostRepository $postRepository
      * @param PaginatorInterface $paginator
+     * @param TranslatorInterface $translator
      */
-    public function __construct(PostRepository $postRepository, PaginatorInterface $paginator)
+    public function __construct(PostRepository $postRepository, PaginatorInterface $paginator, TranslatorInterface $translator)
     {
         $this->postRepository = $postRepository;
         $this->paginator = $paginator;
+        $this->translator = $translator;
     }
 
     public function createPost(string $intent, Post $post)
@@ -53,7 +61,8 @@ class PostManager
         return $this->paginator->paginate(
             $this->getActivePosts($intent),
             $page,
-            $perPage
+            $perPage,
+            ['pageParameterName' => $this->translator->trans('page')]
         );
     }
 

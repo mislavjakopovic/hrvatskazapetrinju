@@ -7,6 +7,7 @@ namespace App\Controller;
 use App\Manager\PostManager;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class HomeController extends AbstractBaseController
 {
@@ -19,10 +20,13 @@ class HomeController extends AbstractBaseController
 
     /**
      * @param PostManager $postManager
+     * @param TranslatorInterface $translator
      */
-    public function __construct(PostManager $postManager)
+    public function __construct(PostManager $postManager, TranslatorInterface $translator)
     {
         $this->postManager = $postManager;
+
+        parent::__construct($translator);
     }
 
     /**

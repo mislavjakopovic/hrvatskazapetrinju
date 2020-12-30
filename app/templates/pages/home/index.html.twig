@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-12 col-md-6 col-lg-6 mt-5 mt-lg-0">
                     <div class="card">
-                        <a class="card-body" href="{{ path('post_list_by_intent', { intent: 'trazim' }) }}">
+                        <a class="card-body" href="{{ path('post_list_by_intent', {intent: 'looking'|trans }) }}">
                             <div class="empty-state" data-height="500" style="height: 400px;">
                                 <img class="img-fluid" src="{{ asset('assets/images/drawkit/hiker-man-colour.svg') }}"
                                      alt="image">
@@ -24,7 +24,7 @@
                 </div>
                 <div class="col-12 col-md-6 col-lg-6 mt-5 mt-lg-0">
                     <div class="card">
-                        <a class="card-body" href="{{ path('post_list_by_intent', { intent: 'nudim' }) }}">
+                        <a class="card-body" href="{{ path('post_list_by_intent', {intent: 'offering'|trans }) }}">
                             <div class="empty-state" data-height="500" style="height: 400px;">
                                 <img class="img-fluid" src="{{ asset('assets/images/drawkit/storefront-colour.svg') }}"
                                      alt="image">
@@ -58,9 +58,9 @@
                                 <div class="article-category">
                                     <a href="#">{{ post.category|trans }}</a><br>
                                     <div class="bullet"></div>
-                                    <a href="#">{{ post.createdAt|date('d.m.Y h:i') }}</a><br>
+                                    <a href="#">{{ post.createdAt|elapsed }}</a><br>
                                     <div class="bullet"></div>
-                                    <a href="#">{{ post.createdAt|date('d.m.Y h:i') }}</a>
+                                    <a href="#">{{ post.createdAt|elapsed }}</a>
                                 </div>
                                 <div class="article-title">
                                     <h2>
