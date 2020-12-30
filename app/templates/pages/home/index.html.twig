@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-12 col-md-6 col-lg-6">
                     <div class="card">
-                        <a class="card-body" href="{{ path('post_list_by_type', { type: 'looking' }) }}">
+                        <a class="card-body" href="{{ path('post_list_by_intent', { intent: constant('App\\Enum\\PostIntentEnum::LOOKING') }) }}">
                             <div class="empty-state" data-height="500" style="height: 400px;">
                                 <img class="img-fluid" src="{{ asset('assets/images/drawkit/hiker-man-colour.svg') }}"
                                      alt="image">
@@ -24,7 +24,7 @@
                 </div>
                 <div class="col-12 col-md-6 col-lg-6">
                     <div class="card">
-                        <a class="card-body" href="{{ path('post_list_by_type', { type: 'offering' }) }}">
+                        <a class="card-body" href="{{ path('post_list_by_intent', { intent: constant('App\\Enum\\PostIntentEnum::OFFERING') }) }}">
                             <div class="empty-state" data-height="500" style="height: 400px;">
                                 <img class="img-fluid" src="{{ asset('assets/images/drawkit/storefront-colour.svg') }}"
                                      alt="image">

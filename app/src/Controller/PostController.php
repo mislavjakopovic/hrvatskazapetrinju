@@ -4,7 +4,11 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Enum\PostTypeEnum;
+use App\Entity\Post;
+use App\Enum\PostIntentEnum;
+use App\Form\PostType;
+use App\Manager\PostManager;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -21,32 +25,67 @@ class PostController extends AbstractBaseController
     }
 
     /**
-     * @Route("/{type}", name="post_list_by_type")
+     * @Route("/{intent}", name="post_list_by_intent")
      *
-     * @param string $type
+     * @param string $intent
      *
      * @return Response
      *
      * @throws \Exception
      */
-    public function listByType(string $type): Response
+    public function listByIntent(string $intent,  PostManager $postManager): Response
     {
-        if (!in_array($type, PostTypeEnum::getAvailableTypes())) {
-            throw new \Exception('Type not valid, maybe redirect me to homepage gracefully?');
-        }
+        $this->checkIntent($intent);
 
         return $this->render(
-            'post/list.html.twig'
+            'post/list.html.twig',
+            [
+                'intent' => $intent,
+                'posts' => $postManager->getActivePosts($intent)
+            ]
         );
     }
 
     /**
-     * @Route("s", name="create")
+     * @Route("/create/{intent}", name="post_create_by_intent")
+     *
+     * @param string $intent
+     * @param Request $request
+     *
+     * @return Response
+     *
+     * @throws \Exception
      */
-    public function create(): Response
+    public function createByIntent(string $intent, Request $request, PostManager $postManager): Response
     {
-        return $this->redirect(
-            $this->generateUrl('post_index')
+        $this->checkIntent($intent);
+
+        $post = new Post();
+        $form = $this->createForm(PostType::class, $post, ['intent' => $intent]);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $postManager->createPost($intent, $post);
+            $this->addFlash('success', 'Post created successfully!');
+
+            return $this->redirectToRoute('post_list_by_intent', ['intent' => $intent]);
+        }
+
+
+        return $this->render(
+            'post/create.html.twig',
+            [
+                'intent' => $intent,
+                'form' => $form->createView()
+            ]
         );
+    }
+
+    protected function checkIntent(string $intent): void
+    {
+        if (!in_array($intent, PostIntentEnum::getAvailableIntents())) {
+            throw new \Exception('Intent is not valid, maybe redirect me to homepage gracefully?');
+        }
     }
 }

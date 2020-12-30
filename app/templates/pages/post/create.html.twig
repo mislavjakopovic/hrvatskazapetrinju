@@ -1,0 +1,24 @@
+{% extends '@root/base.html.twig' %}
+
+{% block title %} List by intent {% endblock %}
+
+{% block body %}
+    <section class="section">
+        <div class="section-body">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            {% include '@root/pages/post/_form.html.twig' %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}

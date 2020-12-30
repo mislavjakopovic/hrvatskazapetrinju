@@ -10,10 +10,12 @@ Encore
     .setManifestKeyPrefix('assets/')
     .cleanupOutputBeforeBuild()
 
+    /* Theme CSS */
+    .addStyleEntry('css/theme/style', './assets/css/theme/style.css')
+    .addStyleEntry('css/theme/components', './assets/css/theme/components.css')
+
     /* SCSS compiles */
-    .addEntry('css/style', './assets/style.js')
-    .addEntry('css/components', './assets/components.js')
-    .addEntry('css/reverse', './assets/reverse.js')
+    .addEntry('css/custom', './assets/custom.js')
 
     /* Custom JS */
     .addEntry('js/init/scripts', './assets/js/inits/scripts.init.js')

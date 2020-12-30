@@ -10,15 +10,22 @@ class PostCategoryEnum
     public const TRANSPORTATION = 'transportation';
     public const RESIDENCY = 'residency';
 
-    public const LOOKING_CATEGORIES = [
-        self::SUPPLIES,
-        self::TRANSPORTATION,
-        self::RESIDENCY,
+    public const READABLE = [
+        self::SUPPLIES => 'Namirnice / Potrebštine',
+        self::TRANSPORTATION => 'Prijevoz',
+        self::RESIDENCY => 'Smještaj'
     ];
 
-    public const OFFERING_CATEGORIES = [
-        self::SUPPLIES,
-        self::TRANSPORTATION,
-        self::RESIDENCY,
+    public const INTENT_CATEGORIES = [
+        PostIntentEnum::LOOKING => [
+            self::SUPPLIES,
+            self::TRANSPORTATION,
+            self::RESIDENCY,
+        ],
+        PostIntentEnum::OFFERING => [
+            self::SUPPLIES,
+            self::TRANSPORTATION,
+            self::RESIDENCY,
+        ]
     ];
 }
