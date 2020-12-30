@@ -8,9 +8,9 @@ use Twig\TwigFilter;
 
 class CarbonExtension extends AbstractExtension
 {
-    public function __construct()
+    public function __construct(string $locale)
     {
-        Carbon::setLocale('hr');
+        Carbon::setLocale($locale);
     }
 
     public function getFilters(): array
