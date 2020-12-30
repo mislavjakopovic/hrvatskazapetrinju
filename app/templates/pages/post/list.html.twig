@@ -64,6 +64,12 @@
     </div>
 {% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('css/pages/home') }}
+{% endblock %}
+
 {% block javascripts %}
     {{ parent() }}
+    {{ encore_entry_script_tags('js/pages/home') }}
 {% endblock %}
