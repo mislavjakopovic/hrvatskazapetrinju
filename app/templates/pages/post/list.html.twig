@@ -5,52 +5,91 @@
 {% block body %}
     <section class="section">
         <div class="section-body">
+            <h2 class="section-title">Article Style C</h2>
             <div class="row">
-                <div class="col-12 offset-md-6 col-md-6 offset-lg-6 col-lg-6">
-                    <div class="offset-lg-9">
-                        <a href="{{ path('post_create_by_intent', { intent: intent }) }}"
-                           class="btn btn-block btn-lg btn-icon icon-left btn-primary">
-                            <i class="far fa-edit"></i>
-                            Stvori novi
-                        </a>
-                    </div>
+                <div class="col-12 col-sm-6 col-md-6 col-lg-3">
+                    <article class="article article-style-c">
+                        <div class="article-header">
+                            <div class="article-image" data-background="{{ asset('images/news/img13.jpg') }}"></div>
+                        </div>
+                        <div class="article-details">
+                            <div class="article-category">
+                                <a href="#">News</a>
+                                <div class="bullet"></div>
+                                <a href="#">5 Days</a>
+                            </div>
+                            <div class="article-title">
+                                <h2><a href="#">Excepteur sint occaecsdadas</a></h2>
+                            </div>
+                            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse
+                                cillum dolore eu fugiat nulla pariatur. </p>
+                            <div class="article-user">
+                                <img alt="image" src="{{ asset('images/avatar/avatar-1.png') }}">
+                                <div class="article-user-details">
+                                    <div class="user-detail-name">
+                                        <a href="#">Hasan Basri</a>
+                                    </div>
+                                    <div class="text-job">Web Developer</div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
                 </div>
             </div>
-
-            <div class="row">
-                {% for post in posts %}
-                    <div class="col-12 col-md-4 col-lg-4">
-                        <article class="article article-style-c">
-                            <div class="article-header">
-                                <div class="article-image" data-background="https://picsum.photos/1280/720?image={{ post.id }}">
-                                </div>
-                            </div>
-                            <div class="article-details">
-                                <div class="article-category"><a href="#">News</a> <div class="bullet"></div> <a href="#">5 Days</a></div>
-                                <div class="article-title">
-                                    <h2><a href="#">Excepteur sint occaecat cupidatat non proident</a></h2>
-                                </div>
-                                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                    cillum dolore eu fugiat nulla pariatur. </p>
-                                <div class="article-user">
-                                    <img alt="image" src="../assets/img/avatar/avatar-1.png">
-                                    <div class="article-user-details">
-                                        <div class="user-detail-name">
-                                            <a href="#">Hasan Basri</a>
-                                        </div>
-                                        <div class="text-job">Web Developer</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-                {% else %}
-                    <h2 class="mx-auto">No posts available yet..</h2>
-                {% endfor %}
-            </div>
-
         </div>
     </section>
+
+
+
+
+{#stari dio#}
+{#    <section class="section mt-5 mt-sm-5 mt-md-5 mt-lg-5 mt-xl-1">#}
+{#        <div class="section-body">#}
+{#            <div class="row">#}
+{#                <div class="col-12 offset-md-6 col-md-6 offset-lg-6 col-lg-6 mt-3 mt-lg-0">#}
+{#                    <div class="offset-lg-9 offset-md-1 mb-4">#}
+{#                        <a href="#" class="btn btn-block btn-lg btn-icon icon-left btn-primary"><i class="far fa-edit"></i> Primary</a>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="row">#}
+{#                <div class="col-12 col-md-6 col-lg-6">#}
+{#                    <div class="card">#}
+{#                        <a class="card-body card-body-intent" href="{{ path('post_list_by_type', { type: 'looking' }) }}">#}
+{#                            <div class="empty-state" data-height="500" style="height: 400px;">#}
+{#                                <img class="img-fluid" src="{{ asset('assets/images/drawkit/hiker-man-colour.svg') }}"#}
+{#                                     alt="image">#}
+{#                            </div>#}
+{#                            <div style="text-align: center">#}
+{#                                <h2 class="mt-0">Tražim</h2>#}
+{#                                <p class="lead">#}
+{#                                    Neki tekst o trazenju..#}
+{#                                </p>#}
+{#                            </div>#}
+{#                        </a>#}
+{#                    </div>#}
+{#                </div>#}
+
+{#                <div class="col-12 col-md-6 col-lg-6">#}
+{#                    <div class="card">#}
+{#                        <a class="card-body" href="{{ path('post_list_by_type', { type: 'looking' }) }}">#}
+{#                            <div class="empty-state" data-height="500" style="height: 400px;">#}
+{#                                <img class="img-fluid" src="{{ asset('assets/images/drawkit/hiker-man-colour.svg') }}"#}
+{#                                     alt="image">#}
+{#                            </div>#}
+{#                            <div style="text-align: center">#}
+{#                                <h2 class="mt-0">Tražim</h2>#}
+{#                                <p class="lead">#}
+{#                                    Neki tekst o trazenju..#}
+{#                                </p>#}
+{#                            </div>#}
+{#                        </a>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+
+{#        </div>#}
+{#    </section>#}
 {% endblock %}
 
 {% block javascripts %}

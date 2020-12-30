@@ -3,10 +3,10 @@
 {% block title %} {{ platform.full_name }} {% endblock %}
 
 {% block body %}
-    <section class="section">
-        <div class="section-body">
+{#    <section class="section mt-sm-0 mt-5">#}
+{#        <div class="section-body">#}
             <div class="row">
-                <div class="col-12 col-md-6 col-lg-6">
+                <div class="col-12 col-md-6 col-lg-6 mt-5 mt-lg-0">
                     <div class="card">
                         <a class="card-body" href="{{ path('post_list_by_intent', { intent: constant('App\\Enum\\PostIntentEnum::LOOKING') }) }}">
                             <div class="empty-state" data-height="500" style="height: 400px;">
@@ -22,7 +22,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-12 col-md-6 col-lg-6">
+                <div class="col-12 col-md-6 col-lg-6 mt-5 mt-lg-0">
                     <div class="card">
                         <a class="card-body" href="{{ path('post_list_by_intent', { intent: constant('App\\Enum\\PostIntentEnum::OFFERING') }) }}">
                             <div class="empty-state" data-height="500" style="height: 400px;">
@@ -39,8 +39,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+{#        </div>#}
+{#    </section>#}
 {% endblock %}
 
 {% block javascripts %}

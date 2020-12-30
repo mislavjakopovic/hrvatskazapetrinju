@@ -17,6 +17,9 @@ Encore
     /* SCSS compiles */
     .addEntry('css/custom', './assets/custom.js')
 
+    /* Custom CSS */
+    .addEntry('css/pages/home', './assets/css/pages/home.css')
+
     /* Custom JS */
     .addEntry('js/init/scripts', './assets/js/inits/scripts.init.js')
     .addEntry('js/init/stisla', './assets/js/inits/stisla.init.js')
