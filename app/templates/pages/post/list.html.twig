@@ -5,6 +5,8 @@
 {% block body %}
     <section class="section mt-5 mt-md-5 mt-lg-1 mt-sm-5">
         <div class="section-body">
+            {% include '@root/_flash_messages.html.twig' %}
+
             <div class="row">
                 <div class="col-lg-4">
                     {% if intent|trans == 'looking' %}
