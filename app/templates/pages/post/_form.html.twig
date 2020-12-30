@@ -14,9 +14,9 @@
         {{ form_widget(form.category) }}
     </div>
 
-    {{ form_label(form.author, 'Vaše ime', {'label_attr': {'class': 'col-form-label text-md-right col-12 col-md-1 col-lg-2'}}) }}
-    <div class="col-sm-12 col-md-5">
-        {{ form_widget(form.author) }}
+    {{ form_label(form.city, 'Grad', {'label_attr': {'class': 'col-form-label text-md-right col-12 col-md-1 col-lg-3'}}) }}
+    <div class="col-sm-12 col-md-4 col-lg-4">
+        {{ form_widget(form.city) }}
     </div>
 </div>
 
@@ -28,9 +28,21 @@
 </div>
 
 <div class="form-group row mb-4">
-    {{ form_label(form.contact, 'Kontakt podatci', {'label_attr': {'class': 'col-form-label text-md-right col-12 col-md-1 col-lg-1'}}) }}
+    {{ form_label(form.address, 'Adresa', {'label_attr': {'class': 'col-form-label text-md-right col-12 col-md-1 col-lg-1'}}) }}
     <div class="col-sm-12 col-md-4 col-lg-10">
+        {{ form_widget(form.address) }}
+    </div>
+</div>
+
+<div class="form-group row mb-4">
+    {{ form_label(form.contact, 'Telefon', {'label_attr': {'class': 'col-form-label text-md-right col-12 col-md-1 col-lg-1'}}) }}
+    <div class="col-sm-12 col-md-4 col-lg-3">
         {{ form_widget(form.contact) }}
+    </div>
+
+    {{ form_label(form.author, 'Autor', {'label_attr': {'class': 'col-form-label text-md-right col-12 col-md-1 col-lg-1'}}) }}
+    <div class="col-sm-12 col-md-4 col-lg-4">
+        {{ form_widget(form.author) }}
     </div>
 </div>
 

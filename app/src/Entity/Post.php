@@ -50,9 +50,25 @@ class Post
      * @var string
      *
      * @ORM\Column(type="text")
-     * @Assert\NotBlank(message="post.blank_content")
+     * @Assert\NotBlank()
      */
     protected $content;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="text")
+     * @Assert\NotBlank()
+     */
+    protected $city;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="text")
+     * @Assert\NotBlank()
+     */
+    protected $address;
 
     /**
      * @var string
@@ -169,6 +185,42 @@ class Post
     public function getContent(): string
     {
         return $this->content;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCity(): string
+    {
+        return $this->city;
+    }
+
+    /**
+     * @param string $city
+     * @return Post
+     */
+    public function setCity(string $city): Post
+    {
+        $this->city = $city;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAddress(): string
+    {
+        return $this->address;
+    }
+
+    /**
+     * @param string $address
+     * @return Post
+     */
+    public function setAddress(string $address): Post
+    {
+        $this->address = $address;
+        return $this;
     }
 
     /**

@@ -9,6 +9,7 @@ use App\Enum\PostCategoryEnum;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -44,6 +45,10 @@ class PostType extends AbstractType
             ->add('author', TextType::class, [
                 'required' => true,
             ])
+            ->add('city', TextType::class, [
+                'required' => true,
+            ])
+            ->add('address', TextType::class)
             ->add('category', ChoiceType::class, [
                 'required' => true,
                 'choices' => PostCategoryEnum::INTENT_CATEGORIES[$options['intent']],
@@ -54,7 +59,7 @@ class PostType extends AbstractType
             ->add('content', TextareaType::class, [
                 'required' => true,
             ])
-            ->add('contact', TextType::class, [
+            ->add('contact', TelType::class, [
                 'required' => true,
             ])
             ->add('save', SubmitType::class);

@@ -8,7 +8,7 @@ parameters:
     platform:
         domain: 'hrvatskazapetrinju.com'
         short_name: 'HZP'
-        full_name: 'Hrvatska Za Petrinju'
+        full_name: 'Hrvatska za Petrinju'
         locale: '%locale%'
 
 services:
