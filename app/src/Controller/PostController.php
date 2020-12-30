@@ -8,9 +8,12 @@ use App\Entity\Post;
 use App\Enum\PostIntentEnum;
 use App\Form\PostType;
 use App\Manager\PostManager;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Pagerfanta\Pagerfanta;
+use Pagerfanta\Adapter\ArrayAdapter;
 
 class PostController extends AbstractBaseController
 {
@@ -29,19 +32,35 @@ class PostController extends AbstractBaseController
      *
      * @param string $intent
      *
+     * @param Request $request
+     *
      * @return Response
      *
      * @throws \Exception
      */
-    public function listByIntent(string $intent,  PostManager $postManager): Response
+    public function listByIntent(string $intent,  PostManager $postManager, Request $request, PaginatorInterface $paginator): Response
     {
+        /**Get the current page**/
+        $page = intval($request->get('page'));
+
+        /**Amount of items per page**/
+        $perPage = 6;
+
+        if(!$page){
+            $page = 1;
+        }
+
         $this->checkIntent($intent);
+
+        $posts = $postManager->getActivePosts($intent);
+
+        $pagination = $paginator->paginate($posts, $page, $perPage);
 
         return $this->render(
             'post/list.html.twig',
             [
                 'intent' => $intent,
-                'posts' => $postManager->getActivePosts($intent)
+                'posts' => $pagination
             ]
         );
     }
