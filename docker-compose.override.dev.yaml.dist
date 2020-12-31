@@ -1,0 +1,23 @@
+version: '3'
+services:
+    nginx-hzp:
+        environment:
+            APP_ENV: 'dev'
+        ports:
+            - 41080:80
+    php-hzp:
+        environment:
+            APP_ENV: 'dev'
+    mariadb-hzp:
+        environment:
+            APP_ENV: 'dev'
+        ports:
+            - 41306:3306
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        links:
+            - mariadb-hzp
+        environment:
+            PMA_HOST: 'mariadb-hzp'
+        ports:
+            - 41081:80

@@ -1,9 +1,16 @@
 version: '3'
 services:
     nginx-hzp:
+        environment:
+            APP_ENV: 'prod'
         ports:
-            - 41080:80
+            - 80:80
+    php-hzp:
+        environment:
+            APP_ENV: 'prod'
     mariadb-hzp:
+        environment:
+            APP_ENV: 'prod'
         ports:
             - 41306:3306
     phpmyadmin:
@@ -11,6 +18,6 @@ services:
         links:
             - mariadb-hzp
         environment:
-            - 'PMA_HOST=mariadb-hzp'
+            PMA_HOST: 'mariadb-hzp'
         ports:
             - 41081:80

@@ -6,22 +6,27 @@ services:
         depends_on:
             - php-hzp
             - mariadb-hzp
+        environment:
+            APP_ENV: 'dev'
         volumes:
             - ./docker/services/nginx/config/nginx.conf:/etc/nginx/nginx.conf
-            - ./docker/services/nginx/config/sites-enabled:/etc/nginx/sites-enabled/
+            - ./docker/services/nginx/config/sites-available:/etc/nginx/sites-available/
             - ./:/var/www/html/hzp
         working_dir: /var/www/html/hzp/app
-        command: [ 'nginx' ]
+        entrypoint: ['../docker/services/nginx/scripts/entrypoint.sh']
+        command: ['nginx']
 
     php-hzp:
         build: docker/services/php
         depends_on:
             - mariadb-hzp
+        environment:
+            APP_ENV: 'dev'
         volumes:
             - ./:/var/www/html/hzp
         working_dir: /var/www/html/hzp/app
-        entrypoint: [ '../docker/services/php/scripts/entrypoint.sh' ]
-        command: [ 'php-fpm' ]
+        entrypoint: ['../docker/services/php/scripts/entrypoint.sh']
+        command: ['php-fpm']
 
     mariadb-hzp:
         image: mariadb:10.5
