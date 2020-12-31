@@ -2,4 +2,44 @@
     .navbar-bg{
         height: 70px !important;
     }
+
+    .scale-logo{
+        display: none;
+    }
+
+    .scale-logo-mobile{
+        dispaly: block;
+    }
+}
+
+/*@media screen and (max-width: 992px) {*/
+/*}*/
+
+/*@media screen and (max-width: 768px) {*/
+
+/*}*/
+
+/*@media screen and (max-width: 576px) {*/
+
+/*}*/
+
+.scale-logo-mobile{
+    width: 100px;
+    display: none;
+}
+
+.card-max-height{
+    height: 50px;
+}
+
+.hzp-logo{
+    max-width: 100%;
+    height: auto;
+}
+
+.scale-logo{
+    padding-top: 25px;
+    margin-left: 30px;
+    margin-right: 60px;
+    width: 100px;
 }

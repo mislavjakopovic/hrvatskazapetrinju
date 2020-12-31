@@ -12,7 +12,7 @@
                     <div class="card">
                         <a class="card-body" href="{{ path('post_list_by_intent', {intent: 'looking'|trans }) }}">
                             <div class="empty-state" data-height="500" style="height: 400px;">
-                                <img class="img-fluid" src="{{ asset('assets/images/drawkit/hiker-man-colour.svg') }}"
+                                <img class="img-fluid" src="{{ asset('images/drawkit/hiker-man-colour.svg') }}"
                                      alt="image">
                             </div>
                             <div style="text-align: center">
@@ -28,7 +28,7 @@
                     <div class="card">
                         <a class="card-body" href="{{ path('post_list_by_intent', {intent: 'offering'|trans }) }}">
                             <div class="empty-state" data-height="500" style="height: 400px;">
-                                <img class="img-fluid" src="{{ asset('assets/images/drawkit/storefront-colour.svg') }}"
+                                <img class="img-fluid" src="{{ asset('images/drawkit/residency.svg') }}"
                                      alt="image">
                             </div>
                             <div style="text-align: center">
@@ -48,17 +48,17 @@
             </div>
             <div class="row">
                 {% for post in posts %}
-                    <div class="col-12 col-sm-6 col-md-6 col-lg-3">
+                    <div class="col-12 col-sm-6 col-md-6 col-lg-4">
                         <article class="article article-style-c">
                             <div class="article-header">
                                 <div class="article-title">
-                                    <b style="color: white" href="#">{{ post.title }}</b>
+                                    <b style="color: white" href="#">{{ post.intent|trans|capitalize }} - {{ post.category|trans }}</b>
                                 </div>
-                                <div class="article-image" data-background="{{ asset('images/news/img13.jpg') }}"></div>
+                                <div class="article-image" data-background="{{ asset('images/drawkit/' ~ post.category ~ '.svg') }}"></div>
                             </div>
                             <div class="article-details">
                                 <div class="article-category">
-                                    <a href="#">{{ post.category|trans }}</a><br>
+                                    <a href="#">Pregledano {{ post.views }} puta</a><br>
                                     <div class="bullet"></div>
                                     <a href="#">{{ post.createdAt|elapsed }}</a><br>
                                 </div>
@@ -67,14 +67,14 @@
                                         <a href="{{ path('post_view_by_id', {'id': post.id}) }}">{{ post.title|truncate(64, true) }}</a>
                                     </h2>
                                 </div>
-                                <p>{{ post.content|striptags|truncate(100, true) }} </p>
+                                <p class="card-max-height">{{ post.content|striptags|truncate(75, true) }} </p>
                                 <div class="article-user">
                                     <img alt="image" src="{{ asset('images/avatar/avatar-1.png') }}">
                                     <div class="article-user-details">
                                         <div class="text-job">{{ post.author }}</div>
 
                                         <div class="user-detail-name">
-                                            <a href="#">Pročitajte više</a>
+                                            <a href="{{ path('post_view_by_id', {'id': post.id}) }}">Pročitajte više</a>
                                         </div>
                                     </div>
                                 </div>
@@ -89,10 +89,8 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    {{ encore_entry_link_tags('css/pages/home') }}
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
-    {{ encore_entry_script_tags('js/pages/home') }}
 {% endblock %}

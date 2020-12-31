@@ -18,6 +18,7 @@
         {{ encore_entry_link_tags('css/theme/style') }}
         {{ encore_entry_link_tags('css/theme/components') }}
         {{ encore_entry_link_tags('css/custom') }}
+        {{ encore_entry_link_tags('css/pages/home') }}
     {% endblock %}
 </head>
 <body class="layout-3">
@@ -25,7 +26,13 @@
     <div class="main-wrapper container">
         <div class="navbar-bg"></div>
         <nav class="navbar navbar-expand-lg main-navbar">
-            <a href="{{ path('home_index') }}" class="navbar-brand sidebar-gone-hide" style="position:absolute; width: 100%; left: 0; right: 0; text-align: center">HRVATSKA ZA PETRINJU</a>
+            <div class="scale-logo">
+                <a class="scale-logo" href="{{ path('home_index') }}"><img class="hzp-logo" src="{{ asset('images/logo.png') }}" alt="Logo"></a>
+            </div>
+            <a href="{{ path('home_index') }}" class="navbar-brand sidebar-gone-hide">HRVATSKA ZA PETRINJU</a>
+            <div class="scale-logo-mobile">
+                <a class="scale-logo-mobile" href="{{ path('home_index') }}"><img class="hzp-logo" src="{{ asset('images/logo.png') }}" alt="Logo"></a>
+            </div>
             <div class="navbar-nav">
                 <a href="#" class="nav-link sidebar-gone-show" data-toggle="sidebar"><i class="fas fa-bars"></i></a>
             </div>
@@ -98,6 +105,7 @@
 {% block javascripts %}
     {{ encore_entry_script_tags('js/init/scripts') }}
     {{ encore_entry_script_tags('js/init/stisla') }}
+    {{ encore_entry_script_tags('js/pages/home') }}
 {% endblock %}
 </body>
 </html>
