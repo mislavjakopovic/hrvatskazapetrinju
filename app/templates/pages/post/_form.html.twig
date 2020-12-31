@@ -37,7 +37,7 @@
 <div class="form-group row mb-4">
     {{ form_label(form.contact, 'Telefon', {'label_attr': {'class': 'col-form-label text-md-right col-12 col-md-1 col-lg-1'}}) }}
     <div class="col-sm-12 col-md-4 col-lg-3">
-        {{ form_widget(form.contact, {'attr': {'pattern': '[0-9]{5,12}'}}) }}
+        {{ form_widget(form.contact, {'attr': {'pattern': '[0-9 ]{5,12}'}}) }}
     </div>
 
     {{ form_label(form.author, 'Autor', {'label_attr': {'class': 'col-form-label text-md-right col-12 col-md-1 col-lg-1'}}) }}
