@@ -7,6 +7,7 @@ namespace App\Manager;
 use App\Entity\Post;
 use App\Enum\PostStatusEnum;
 use App\Exception\PostNotFoundException;
+use App\Helper\RandomStringGenerator;
 use App\Repository\PostRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -94,7 +95,7 @@ class PostManager
 
     protected function generateDeactivationToken()
     {
-        $token = substr(sha1(time() . rand()), -12);
+        $token = RandomStringGenerator::generate(12);
 
         if ($this->postRepository->findBy(['deactivationToken' => $token])) {
             return $this->generateDeactivationToken();

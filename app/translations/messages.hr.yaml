@@ -9,7 +9,7 @@ page: 'stranica'
 error:
     404: 'Zadana adresa nije pronađena'
 post:
-    created: 'Objava uspješno stvorena. Kod za brisanje objave je %deactivationToken% - molimo spremite ga ukoliko će te htjeti obrisati istu u budućnosti.'
+    created: 'Objava uspješno stvorena. Kod za brisanje objave je "%deactivationToken%". Molimo spremite ga ukoliko će te htjeti obrisati istu u budućnosti.'
     deleted: 'Vaša objava je uspješno obrisana.'
     deactivationTokenInvalid: 'Kod za brisanje (%deactivationToken%) nije važeći. Molimo vas pokušajte opet.'
     deactivationTokenEmpty: 'Kod za brisanje ne može biti prazan.'
