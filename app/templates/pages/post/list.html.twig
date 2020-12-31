@@ -52,10 +52,11 @@
                                 <div class="article-user">
                                     <img alt="image" src="{{ asset('images/avatar/avatar-1.png') }}">
                                     <div class="article-user-details">
-                                        <div class="text-job">{{ post.phone }}</div>
                                         <div class="user-detail-name">
-                                            <a href="#">{{ post.author }}</a>
+                                            <a href="tel:{{ post.phone }}">{{ post.author }}</a>
                                         </div>
+
+                                        <div class="text-job">{{ post.city }}</div>
                                     </div>
                                 </div>
                             </div>
