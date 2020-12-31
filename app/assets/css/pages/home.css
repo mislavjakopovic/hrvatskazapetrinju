@@ -1,45 +1,72 @@
 @media screen and (max-width: 1024px) {
-    .navbar-bg{
+    .navbar-bg {
         height: 70px !important;
     }
 
-    .scale-logo{
+    .nav-collapse {
         display: none;
     }
 
-    .scale-logo-mobile{
-        dispaly: block;
+    .scale-logo {
+        display: none;
     }
 }
 
-/*@media screen and (max-width: 992px) {*/
-/*}*/
-
-/*@media screen and (max-width: 768px) {*/
-
-/*}*/
-
-/*@media screen and (max-width: 576px) {*/
-
-/*}*/
-
-.scale-logo-mobile{
+.scale-logo-mobile {
+    padding-top: 10px;
+    margin-left: 30px;
+    margin-right: 60px;
     width: 100px;
-    display: none;
 }
 
-.card-max-height{
+.card-max-height {
     height: 50px;
 }
 
-.hzp-logo{
+.mobile-link-container {
+    position: absolute;
+    top: 30px;
+    right: 10px;
+}
+
+.logo-mobile {
+    width: 65px;
+}
+
+.logo-mobile-text {
+    position: absolute;
+    font-size: 1.4em;
+    top: 22px;
+    right: 90px;
+}
+
+.logo-mobile-text:hover {
+    text-decoration: none;
+}
+
+.hzp-logo {
     max-width: 100%;
     height: auto;
 }
 
-.scale-logo{
+.scale-logo {
     padding-top: 25px;
     margin-left: 30px;
     margin-right: 60px;
     width: 100px;
+}
+
+@media screen and (max-width: 413px) {
+    .logo-mobile-text {
+        right: 65px;
+        font-size: 1.1em;
+    }
+
+    .mobile-link-container {
+        top: 35px;
+    }
+
+    .logo-mobile {
+        width: 50px;
+    }
 }
