@@ -21,11 +21,13 @@
                         <h2>Ponuda</h2>
                     {% endif %}
                 </div>
-                <div class="col-8 offset-md-6 col-md-6 offset-lg-2 col-lg-6 mt-3 mt-lg-0">
+                <div class="col-sm-12 offset-md-6 col-md-6 offset-lg-2 col-lg-6 mt-3 mt-lg-0">
                     <div class="offset-lg-8 offset-md-1 mb-4">
                         <a href="{{ path('post_create_by_intent', {'intent':intent}) }}"
-                           class="btn btn-block btn-lg btn-icon icon-left btn-primary"><i
-                                    class="far fa-edit"></i> Stvori objavu</a>
+                           class="btn btn-block btn-lg btn-icon icon-left btn-primary">
+                            <i class="far fa-edit"></i>Stvori
+                            objavu
+                        </a>
                     </div>
                 </div>
             </div>
@@ -63,7 +65,9 @@
                         </article>
                     </div>
                 {% else %}
-                    <h2 class="mx-auto">Stranica je prazna, stvorite prvu objavu..</h2>
+                    <div class="col-12">
+                        <h2 class="mx-auto">Stranica je prazna, stvorite prvu objavu..</h2>
+                    </div>
                 {% endfor %}
             </div>
         </div>

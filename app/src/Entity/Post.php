@@ -63,10 +63,9 @@ class Post
     protected $city;
 
     /**
-     * @var string
+     * @var string|null
      *
-     * @ORM\Column(type="text")
-     * @Assert\NotBlank()
+     * @ORM\Column(type="text", nullable=true)
      */
     protected $address;
 
@@ -213,18 +212,18 @@ class Post
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getAddress(): string
+    public function getAddress(): ?string
     {
         return $this->address;
     }
 
     /**
-     * @param string $address
+     * @param string|null $address
      * @return Post
      */
-    public function setAddress(string $address): Post
+    public function setAddress(?string $address): Post
     {
         $this->address = $address;
         return $this;

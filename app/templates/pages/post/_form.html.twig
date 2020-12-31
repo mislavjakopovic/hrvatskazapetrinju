@@ -48,11 +48,13 @@
 
 <div class="form-group row mb-4">
     <div class="mb-3 col-md-12 col-sm-12 offset-lg-7 col-lg-2">
-        <a href="{{ path('post_list_by_intent', {'intent': intent}) }}" class="btn btn-block btn-secondary btn-lg">Natrag</a>
+        {{ form_widget(form.save, {label: 'Spremi', 'attr': {'class': 'btn btn-block btn-primary btn-lg'}}) }}
     </div>
 
     <div class="col-md-12 col-sm-12 col-lg-2">
-        {{ form_widget(form.save, {label: 'Spremi', 'attr': {'class': 'btn btn-block btn-primary btn-lg'}}) }}
+        <a href="{{ path('post_list_by_intent', {'intent': intent}) }}" class="btn btn-block btn-secondary btn-lg">Natrag</a>
     </div>
+
+
 </div>
 {{ form_end(form) }}

@@ -48,7 +48,9 @@ class PostType extends AbstractType
             ->add('city', TextType::class, [
                 'required' => true,
             ])
-            ->add('address', TextType::class)
+            ->add('address', TextType::class, [
+                'required' => false,
+            ])
             ->add('category', ChoiceType::class, [
                 'required' => true,
                 'choices' => PostCategoryEnum::INTENT_CATEGORIES[$options['intent']],

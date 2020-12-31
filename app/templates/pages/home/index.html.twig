@@ -8,10 +8,10 @@
             {% include '@root/_flash_messages.html.twig' %}
 
             <div class="row">
-                <div class="col-12 col-md-6 col-lg-6 mt-5 mt-lg-0">
+                <div class="col-12 col-md-6 col-lg-6 mt-lg-0">
                     <div class="card">
                         <a class="card-body" href="{{ path('post_list_by_intent', {intent: 'looking'|trans }) }}">
-                            <div class="empty-state" data-height="500" style="height: 400px;">
+                            <div class="empty-state" data-height="250" style="height: 250px;">
                                 <img class="img-fluid" src="{{ asset('images/drawkit/hiker-man-colour.svg') }}"
                                      alt="image">
                             </div>
@@ -24,10 +24,10 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-12 col-md-6 col-lg-6 mt-5 mt-lg-0">
+                <div class="col-12 col-md-6 col-lg-6 mt-lg-0">
                     <div class="card">
                         <a class="card-body" href="{{ path('post_list_by_intent', {intent: 'offering'|trans }) }}">
-                            <div class="empty-state" data-height="500" style="height: 400px;">
+                            <div class="empty-state" data-height="250" style="height: 250px;">
                                 <img class="img-fluid" src="{{ asset('images/drawkit/residency.svg') }}"
                                      alt="image">
                             </div>

@@ -8,6 +8,14 @@
             {% include '@root/_flash_messages.html.twig' %}
 
             <div class="row">
+                <div class="col-lg-6 mt-3">
+                    {% if intent|trans == 'looking' %}
+                        <h3>Stvaranje objave (POTRAŽNJA)</h3>
+                    {% elseif intent|trans == 'offering' %}
+                        <h3>Stvaranje objave (PONUDA)</h3>
+                    {% endif %}
+                </div>
+
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
