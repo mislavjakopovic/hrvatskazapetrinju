@@ -1,6 +1,6 @@
 {% extends '@root/base.html.twig' %}
 
-{% block title %} Detalji objave {% endblock %}
+{% block title %} {{ post.title}} {% endblock %}
 
 {% block body %}
     <section class="section mt-5 mt-md-5 mt-lg-1 mt-sm-5">
@@ -32,7 +32,7 @@
                                             <div class="user-detail-name">
                                                 {{ post.author }}
                                             </div>
-                                            <div class="text-primary">{{ post.contact }}</div>
+                                            <div class="text-primary">{{ post.phone }}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -44,7 +44,6 @@
                                                     <p style="display:inline-block;" data-toggle="tooltip" data-placement="top" title="Views"><i style="font-size: 20px;" class="fas fa-eye"></i></p>
                                                     <span style="display: inline; font-size: 20px">{{ post.views }}</span>
                                                 </div>
-
                                             </div>
                                         </div>
                                     </div>
@@ -56,14 +55,4 @@
             </div>
         </div>
     </section>
-{% endblock %}
-
-{% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('css/vendor/chocolat.css') }}">
-    {{ parent() }}
-{% endblock %}
-
-{% block javascripts %}
-    <script src="{{ asset('js/vendor/jquery.chocolat.min.js') }}"></script>
-    {{ parent() }}
 {% endblock %}

@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}">
 
+    <!-- Favicons -->
     <link rel="apple-touch-icon-precomposed" sizes="57x57" href="{{ asset('images/favicons/apple-touch-icon-57x57.png') }}" />
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset('images/favicons/apple-touch-icon-114x114.png') }}" />
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset('images/favicons/apple-touch-icon-72x72.png') }}" />
@@ -27,8 +27,7 @@
     <meta name="msapplication-wide310x150logo" content="{{ asset('images/favicons/mstile-310x150.') }}png" />
     <meta name="msapplication-square310x310logo" content="{{ asset('images/favicons/mstile-310x310.png') }}" />
 
-
-    <title>{% block title %}{% endblock %} &mdash; {{ platform.full_name }}</title>
+    <title>{% block title %}{% endblock %}</title>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-ECCGJ0THQ6"></script>
@@ -80,7 +79,7 @@
         <nav class="navbar navbar-secondary navbar-expand-lg">
             <div class="container">
                 <ul class="navbar-nav">
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a href="{{ path('home_index') }}" class="nav-link"><i class="fas fa-home"></i><span>Početna</span></a>
                     </li>
                     <li class="nav-item dropdown">
@@ -91,26 +90,12 @@
                             <li class="nav-item"><a href="{{ path('post_list_by_intent', {intent: 'looking'|trans}) }}" class="nav-link">Tražim</a></li>
                         </ul>
                     </li>
-{#                    <li class="nav-item dropdown">#}
-{#                        <a href="#" data-toggle="dropdown" class="nav-link has-dropdown"><i#}
-{#                                    class="far fa-clone"></i><span>Multiple Dropdown</span></a>#}
-{#                        <ul class="dropdown-menu">#}
-{#                            <li class="nav-item"><a href="#" class="nav-link">Not Dropdown Link</a></li>#}
-{#                            <li class="nav-item dropdown"><a href="#" class="nav-link has-dropdown">Hover Me</a>#}
-{#                                <ul class="dropdown-menu">#}
-{#                                    <li class="nav-item"><a href="#" class="nav-link">Link</a></li>#}
-{#                                    <li class="nav-item dropdown"><a href="#" class="nav-link has-dropdown">Link 2</a>#}
-{#                                        <ul class="dropdown-menu">#}
-{#                                            <li class="nav-item"><a href="#" class="nav-link">Link</a></li>#}
-{#                                            <li class="nav-item"><a href="#" class="nav-link">Link</a></li>#}
-{#                                            <li class="nav-item"><a href="#" class="nav-link">Link</a></li>#}
-{#                                        </ul>#}
-{#                                    </li>#}
-{#                                    <li class="nav-item"><a href="#" class="nav-link">Link 3</a></li>#}
-{#                                </ul>#}
-{#                            </li>#}
-{#                        </ul>#}
-{#                    </li>#}
+                    <li class="nav-item dropdown">
+                        <a href="#" data-toggle="dropdown" class="nav-link has-dropdown"><i class="fas fa-th-list"></i><span>Ostalo</span></a>
+                        <ul class="dropdown-menu">
+                            <li class="nav-item"><a href="{{ path('post_delete') }}" class="nav-link">Obriši objavu</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </nav>

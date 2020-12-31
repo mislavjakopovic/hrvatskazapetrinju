@@ -9,7 +9,7 @@ use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Doctrine\Persistence\Mapping\MappingException;
 
-abstract class BaseRepository extends ServiceEntityRepository implements SavableInterface
+abstract class BaseRepository extends ServiceEntityRepository implements SavableInterface, DeletableInterface
 {
     /**
      * @param $entity
@@ -35,6 +35,36 @@ abstract class BaseRepository extends ServiceEntityRepository implements Savable
         foreach ($entities as $entity) {
             if (!$entity->getId()) {
                 $this->getEntityManager()->persist($entity);
+            }
+        }
+        $this->getEntityManager()->flush();
+        $this->getEntityManager()->clear();
+    }
+
+    /**
+     * @param $entity
+     *
+     * @throws MappingException
+     * @throws ORMException
+     * @throws OptimisticLockException
+     */
+    public function delete($entity): void
+    {
+        $this->deleteMultiple([$entity]);
+    }
+
+    /**
+     * @param array $entities
+     *
+     * @throws MappingException
+     * @throws ORMException
+     * @throws OptimisticLockException
+     */
+    public function deleteMultiple(array $entities): void
+    {
+        foreach ($entities as $entity) {
+            if ($entity->getId()) {
+                $this->getEntityManager()->remove($entity);
             }
         }
         $this->getEntityManager()->flush();

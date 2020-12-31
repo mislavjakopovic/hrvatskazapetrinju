@@ -35,9 +35,9 @@
 </div>
 
 <div class="form-group row mb-4">
-    {{ form_label(form.contact, 'Telefon', {'label_attr': {'class': 'col-form-label text-md-right col-12 col-md-1 col-lg-1'}}) }}
+    {{ form_label(form.phone, 'Telefon', {'label_attr': {'class': 'col-form-label text-md-right col-12 col-md-1 col-lg-1'}}) }}
     <div class="col-sm-12 col-md-4 col-lg-3">
-        {{ form_widget(form.contact, {'attr': {'pattern': '[0-9 ]{5,12}'}}) }}
+        {{ form_widget(form.phone, {'attr': {'pattern': '[0-9 ]{5,12}'}}) }}
     </div>
 
     {{ form_label(form.author, 'Autor', {'label_attr': {'class': 'col-form-label text-md-right col-12 col-md-1 col-lg-1'}}) }}
@@ -47,12 +47,12 @@
 </div>
 
 <div class="form-group row mb-4">
-    <div class="offset-10">
-        <a href="{{ path('post_list_by_intent', {'intent': intent}) }}" class="btn btn-secondary btn-lg"> Back</a>
+    <div class="offset-9">
+        <a href="{{ path('post_list_by_intent', {'intent': intent}) }}" class="btn btn-secondary btn-lg">Natrag</a>
     </div>
 
     <div class="col-md-1">
-        {{ form_widget(form.save, {label: 'Save', 'attr': {'class': 'btn btn-primary btn-lg'}}) }}
+        {{ form_widget(form.save, {label: 'Spremi', 'attr': {'class': 'btn btn-primary btn-lg'}}) }}
     </div>
 </div>
 {{ form_end(form) }}

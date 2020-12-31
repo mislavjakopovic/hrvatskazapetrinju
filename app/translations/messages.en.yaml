@@ -4,4 +4,7 @@ stranica: 'page'
 error:
     404: 'Route not found'
 post:
-    created: 'Post created successfully!'
+    created: 'Post created successfully! Deactivation token %deactivationToken%'
+    deleted: 'Post deleted successfully.'
+    deactivationTokenInvalid: 'Deactivation token (%deactivationToken%) invalid. Please try again.'
+    deactivationTokenEmpty: 'Deactivaton token can not be empty'

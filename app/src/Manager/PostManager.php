@@ -6,6 +6,7 @@ namespace App\Manager;
 
 use App\Entity\Post;
 use App\Enum\PostStatusEnum;
+use App\Exception\PostNotFoundException;
 use App\Repository\PostRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -45,7 +46,18 @@ class PostManager
         $post->setIntent($intent);
         $post->setStatus(PostStatusEnum::ACTIVE);
         $post->setCreatedAt(new \DateTime());
+        $post->setDeactivationToken($this->generateDeactivationToken());
         $this->postRepository->save($post);
+    }
+
+    public function deletePostByToken(string $deactivationToken)
+    {
+        $post = $this->postRepository->findOneBy(['deactivationToken' => $deactivationToken]);
+        if (empty($post)) {
+            throw new PostNotFoundException();
+        }
+
+        $this->postRepository->delete($post);
     }
 
     public function getActivePosts(string $intent): ?array
@@ -78,5 +90,16 @@ class PostManager
     public function incrementView(Post $post)
     {
         $this->postRepository->incrementView($post);
+    }
+
+    protected function generateDeactivationToken()
+    {
+        $token = substr(sha1(time() . rand()), -12);
+
+        if ($this->postRepository->findBy(['deactivationToken' => $token])) {
+            return $this->generateDeactivationToken();
+        }
+
+        return $token;
     }
 }

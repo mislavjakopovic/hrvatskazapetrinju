@@ -73,11 +73,11 @@ class Post
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=128)
-     * @Assert\Length(max=128)
+     * @ORM\Column(type="string", length=32)
+     * @Assert\Length(max=32)
      * @Assert\NotBlank()
      */
-    protected $contact;
+    protected $phone;
 
     /**
      * @var string
@@ -92,6 +92,13 @@ class Post
      * @ORM\Column(type="string", length=64, nullable=false)
      */
     protected $status;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=12, nullable=false)
+     */
+    protected $deactivationToken;
 
     /**
      * @var \DateTime
@@ -236,18 +243,18 @@ class Post
     /**
      * @return string
      */
-    public function getContact(): string
+    public function getPhone(): string
     {
-        return $this->contact;
+        return $this->phone;
     }
 
     /**
-     * @param string $contact
+     * @param string $phone
      * @return Post
      */
-    public function setContact(string $contact): Post
+    public function setPhone(string $phone): Post
     {
-        $this->contact = $contact;
+        $this->phone = $phone;
         return $this;
     }
 
@@ -284,6 +291,24 @@ class Post
     public function setStatus(string $status): Post
     {
         $this->status = $status;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDeactivationToken(): string
+    {
+        return $this->deactivationToken;
+    }
+
+    /**
+     * @param string $deactivationToken
+     * @return Post
+     */
+    public function setDeactivationToken(string $deactivationToken): Post
+    {
+        $this->deactivationToken = $deactivationToken;
         return $this;
     }
 

@@ -6,6 +6,8 @@ namespace App\Controller;
 
 use App\Entity\Post;
 use App\Enum\PostIntentEnum;
+use App\Exception\PostNotFoundException;
+use App\Form\PostDeleteType;
 use App\Form\PostType;
 use App\Manager\PostManager;
 use Symfony\Component\HttpFoundation\Request;
@@ -91,7 +93,12 @@ class PostController extends AbstractBaseController
         if ($form->isSubmitted() && $form->isValid()) {
 
             $this->postManager->createPost($intent, $post);
-            $this->addFlash('success', $this->translator->trans('post.created'));
+            $this->addFlash('success', $this->translator->trans(
+                'post.created',
+                [
+                    '%deactivationToken%' => $post->getDeactivationToken()
+                ]
+            ));
 
             return $this->redirectToRoute('post_list_by_intent', ['intent' => $intent]);
         }
@@ -124,6 +131,60 @@ class PostController extends AbstractBaseController
             'post/view.html.twig',
             [
                 'post' => $post
+            ]
+        );
+    }
+
+    /**
+     * @Route({
+     *     "hr": "/obrisi",
+     *     "en": "/delete"
+     * }, name="post_delete")
+     *
+     * @param Request $request
+     *
+     * @return Response
+     *
+     * @throws \App\Exception\PostNotFoundException
+     */
+    public function deleteByToken(Request $request): Response
+    {
+        $form = $this->createForm(PostDeleteType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $deactivationToken = $form->getData()['deactivationToken'];
+            if (empty($deactivationToken)) {
+                $this->addFlash('danger', $this->translator->trans(
+                    'post.deactivationTokenEmpty'
+                ));
+
+                return $this->redirectToRoute('post_delete');
+            }
+
+            try {
+                $this->postManager->deletePostByToken($deactivationToken);
+            } catch (PostNotFoundException $exception) {
+                $this->addFlash('warning', $this->translator->trans(
+                    'post.deactivationTokenInvalid',
+                    [
+                        '%deactivationToken%' => $deactivationToken
+                    ]
+                ));
+
+                return $this->redirectToRoute('post_delete');
+            }
+
+            $this->addFlash('success', $this->translator->trans('post.deleted'));
+
+            return $this->redirectToRoute('home_index');
+        }
+
+        return $this->render(
+            'post/delete.html.twig',
+            [
+                'form' => $form->createView()
             ]
         );
     }

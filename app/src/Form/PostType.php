@@ -59,7 +59,7 @@ class PostType extends AbstractType
             ->add('content', TextareaType::class, [
                 'required' => true,
             ])
-            ->add('contact', TelType::class, [
+            ->add('phone', TelType::class, [
                 'required' => true,
             ])
             ->add('save', SubmitType::class);
