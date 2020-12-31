@@ -12,8 +12,7 @@
                     <div class="card">
                         <a class="card-body" href="{{ path('post_list_by_intent', {intent: 'looking'|trans }) }}">
                             <div class="empty-state" data-height="250" style="height: 250px;">
-                                <img class="img-fluid" src="{{ asset('images/drawkit/hiker-man-colour.svg') }}"
-                                     alt="image">
+                                <img class="img-fluid" src="{{ asset('images/drawkit/hiker-man-colour.svg') }}">
                             </div>
                             <div style="text-align: center">
                                 <h2 class="mt-0">Tražim</h2>
@@ -28,8 +27,7 @@
                     <div class="card">
                         <a class="card-body" href="{{ path('post_list_by_intent', {intent: 'offering'|trans }) }}">
                             <div class="empty-state" data-height="250" style="height: 250px;">
-                                <img class="img-fluid" src="{{ asset('images/drawkit/residency.svg') }}"
-                                     alt="image">
+                                <img class="img-fluid" src="{{ asset('images/drawkit/residency.svg') }}">
                             </div>
                             <div style="text-align: center">
                                 <h2 class="mt-0">Nudim</h2>
@@ -52,9 +50,11 @@
                         <article class="article article-style-c">
                             <div class="article-header">
                                 <div class="article-title">
-                                    <b style="color: white" href="#">{{ post.intent|trans|capitalize }} - {{ post.category|trans }}</b>
+                                    <b style="color: white" href="#">{{ post.intent|trans|capitalize }}
+                                        - {{ post.category|trans }}</b>
                                 </div>
-                                <div class="article-image" data-background="{{ asset('images/drawkit/' ~ post.category ~ '.svg') }}"></div>
+                                <div class="article-image"
+                                     data-background="{{ asset('images/undraw/' ~ post.category ~ '.svg') }}"></div>
                             </div>
                             <div class="article-details">
                                 <div class="article-category">

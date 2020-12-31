@@ -3,6 +3,7 @@ offering: 'nudim'
 supplies: 'Potrebštine'
 residency: 'Smještaj'
 transportation: 'Prijevoz'
+material: 'Građevinski materijal'
 other: 'Ostalo'
 page: 'stranica'
 error:
