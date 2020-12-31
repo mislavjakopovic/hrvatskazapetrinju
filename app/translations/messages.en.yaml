@@ -1,4 +1,7 @@
 trazim: 'looking'
 nudim: 'offering'
 stranica: 'page'
-error_404: 'Route not found'
+error:
+    404: 'Route not found'
+post:
+    created: 'Post created successfully!'

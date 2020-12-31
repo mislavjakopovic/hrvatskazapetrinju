@@ -4,4 +4,7 @@ supplies: 'Potrebštine'
 residency: 'Smještaj'
 transportation: 'Prijevoz'
 page: 'stranica'
-error_404: 'Zadana adresa nije pronađena'
+error:
+    404: 'Zadana adresa nije pronađena'
+post:
+    created: 'Objava uspješno stvorena'

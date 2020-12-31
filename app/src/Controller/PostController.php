@@ -91,7 +91,7 @@ class PostController extends AbstractBaseController
         if ($form->isSubmitted() && $form->isValid()) {
 
             $this->postManager->createPost($intent, $post);
-            $this->addFlash('success', 'Post created successfully!');
+            $this->addFlash('success', $this->translator->trans('post.created'));
 
             return $this->redirectToRoute('post_list_by_intent', ['intent' => $intent]);
         }
@@ -152,7 +152,7 @@ class PostController extends AbstractBaseController
     protected function validateIntent(string $intent)
     {
         if (!in_array($intent, PostIntentEnum::getAvailableIntents())) {
-            throw new NotFoundHttpException($this->translator->trans('error_404'));
+            throw new NotFoundHttpException($this->translator->trans('error.404'));
         }
     }
 }
