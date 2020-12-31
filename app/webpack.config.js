@@ -23,6 +23,7 @@ Encore
     /* Custom JS */
     .addEntry('js/init/scripts', './assets/js/inits/scripts.init.js')
     .addEntry('js/init/stisla', './assets/js/inits/stisla.init.js')
+    .addEntry('js/pages/create', './assets/js/pages/create.page.js')
     .addEntry('js/pages/home', './assets/js/pages/home.page.js')
 
     .enableSassLoader()

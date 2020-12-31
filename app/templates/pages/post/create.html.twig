@@ -26,4 +26,37 @@
             </div>
         </div>
     </section>
+
+    <!-- Modal -->
+    <div class="modal fade" id="create-post-modal" tabindex="-1" role="dialog"
+         aria-labelledby="create-post-modal-label"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="create-post-modal-label">O stvaranju objave</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Prije nego što nastavite sa stvaranjem objave, molimo vas da obratite pozornost na sljedeće:
+                    <ul>
+                        <li>Stranica je stvorena kao <b>humanitarna pomoć</b> usred katastrofe i kao takvu očekujemo da je sav sadržaj objave <b>svrsishodan</b>.</li>
+                        <li>Svatko može stvoriti neograničen broj objava, ali <b>ne potičemo ponovljanje</b> istih.</li>
+                        <li>Kada stvarate objavu obratite pozornost na <b>kod</b> koji dobijete, te nakon što je objava ispunila svrhu pomognite nam na održavanju preglednosti <b>brisanjem</b> iste.</li>
+                        <li>Sve objave <b>neprikladnog sadržaja</b> (uvrede, psovke, spam i slično) će biti <b>uklonjene</b> od strane administratora u najkraćem roku.</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">U redu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('js/pages/create') }}
 {% endblock %}
