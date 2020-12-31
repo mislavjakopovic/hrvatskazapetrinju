@@ -1,4 +1,4 @@
-prod-deploy: prod-update prod-set stop prod-upd
+prod-deploy: prod-update prod-set stop upd
 
 prod-update:
 	git pull origin master
