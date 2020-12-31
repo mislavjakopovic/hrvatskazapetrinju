@@ -21,8 +21,7 @@ info "Creating assets.."
 run "npm run dev && bin/console assets:install --env=$APP_ENV --symlink"
 
 info "Initializing Doctrine.."
-run "bin/console doctrine:schema:update --force"
-#run bin/console doctrine:migrations:migrate --env=$APP_ENV --no-interaction
+run "bin/console doctrine:migrations:migrate --env=$APP_ENV --no-interaction"
 
 info "Setting user rights.."
 run "chown -R www-data:www-data $APP_DIR"

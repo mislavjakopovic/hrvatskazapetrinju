@@ -24,7 +24,7 @@ services:
         command: [ 'php-fpm' ]
 
     mariadb-hzp:
-        image: mariadb:latest
+        image: mariadb:10.5
         env_file:
             - app/.env
         environment:
