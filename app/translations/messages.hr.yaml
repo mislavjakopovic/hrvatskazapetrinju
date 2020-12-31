@@ -3,6 +3,7 @@ offering: 'nudim'
 supplies: 'Potrebštine'
 residency: 'Smještaj'
 transportation: 'Prijevoz'
+other: 'Ostalo'
 page: 'stranica'
 error:
     404: 'Zadana adresa nije pronađena'
