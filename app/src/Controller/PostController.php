@@ -18,7 +18,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class PostController extends AbstractBaseController
 {
-    protected const POSTS_PER_PAGE = 6;
+    protected const POSTS_PER_PAGE = 12;
 
     /**
      * @var PostManager
@@ -43,7 +43,6 @@ class PostController extends AbstractBaseController
      * }, name="post_list_by_intent")
      *
      * @param string $intent
-     *
      * @param Request $request
      *
      * @return Response
@@ -114,8 +113,8 @@ class PostController extends AbstractBaseController
 
     /**
      * @Route({
-     *     "hr": "/objava/{id}",
-     *     "en": "/view/{id}"
+     *     "hr": "/objava/{id}/{slug}",
+     *     "en": "/view/{id}/{slug}"
      * }, methods={"GET"}, name="post_view_by_id")
      *
      * @param Post $post
@@ -145,7 +144,6 @@ class PostController extends AbstractBaseController
      *
      * @return Response
      *
-     * @throws \App\Exception\PostNotFoundException
      */
     public function deleteByToken(Request $request): Response
     {

@@ -8,6 +8,7 @@ use App\Entity\Post;
 use App\Enum\PostStatusEnum;
 use App\Exception\PostNotFoundException;
 use App\Helper\RandomStringGenerator;
+use App\Helper\SlugGenerator;
 use App\Repository\PostRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -48,6 +49,7 @@ class PostManager
         $post->setStatus(PostStatusEnum::ACTIVE);
         $post->setCreatedAt(new \DateTime());
         $post->setDeactivationToken($this->generateDeactivationToken());
+        $post->setSlug($this->generateSlug($post->getTitle()));
         $this->postRepository->save($post);
     }
 
@@ -88,12 +90,37 @@ class PostManager
         );
     }
 
-    public function incrementView(Post $post)
+    public function incrementView(Post $post): void
     {
         $this->postRepository->incrementView($post);
     }
 
-    protected function generateDeactivationToken()
+    public function updateSlugs(bool $missingOnly = false): int
+    {
+        $count = 0;
+
+        if ($missingOnly) {
+            $posts = $this->postRepository->findBy(['slug' => '']);
+        } else {
+            $posts = $this->postRepository->findAll();
+        }
+
+        /** @var Post $post */
+        foreach ($posts as $post) {
+            $post->setSlug($this->generateSlug($post->getTitle()));
+            $this->postRepository->update($post);
+            $count++;
+        }
+
+        return $count;
+    }
+
+    protected function generateSlug(string $title): string
+    {
+        return SlugGenerator::generate($title);
+    }
+
+    protected function generateDeactivationToken(): string
     {
         $token = RandomStringGenerator::generate(12);
 

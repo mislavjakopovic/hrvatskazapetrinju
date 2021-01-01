@@ -75,6 +75,7 @@ class PostType extends AbstractType
         $resolver->setRequired('intent');
         $resolver->setDefaults([
             'data_class' => Post::class,
+            'validation_groups' => ['create'],
         ]);
     }
 }

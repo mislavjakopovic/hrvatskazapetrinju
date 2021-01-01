@@ -24,9 +24,9 @@ class Post
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=150)
-     * @Assert\Length(max=150)
-     * @Assert\NotBlank()
+     * @ORM\Column(type="string", length=128)
+     * @Assert\Length(max=128, groups={"create"})
+     * @Assert\NotBlank(groups={"create"})
      */
     protected $title;
 
@@ -34,8 +34,8 @@ class Post
      * @var string
      *
      * @ORM\Column(type="string", length=128)
-     * @Assert\Length(max=128)
-     * @Assert\NotBlank()
+     * @Assert\Length(max=128, groups={"create"})
+     * @Assert\NotBlank(groups={"create"})
      */
     protected $author;
 
@@ -50,7 +50,7 @@ class Post
      * @var string
      *
      * @ORM\Column(type="text")
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(groups={"create"})
      */
     protected $content;
 
@@ -58,7 +58,7 @@ class Post
      * @var string
      *
      * @ORM\Column(type="text")
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(groups={"create"})
      */
     protected $city;
 
@@ -73,8 +73,8 @@ class Post
      * @var string
      *
      * @ORM\Column(type="string", length=32)
-     * @Assert\Length(max=32)
-     * @Assert\NotBlank()
+     * @Assert\Length(max=32, groups={"create"})
+     * @Assert\NotBlank(groups={"create"})
      */
     protected $phone;
 
@@ -105,6 +105,15 @@ class Post
      * @ORM\Column(type="datetime")
      */
     protected $createdAt;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=128)
+     * @Assert\Length(max=128)
+     * @Assert\NotBlank()
+     */
+    protected $slug;
 
     /**
      * @var int
@@ -326,6 +335,24 @@ class Post
     public function setCreatedAt(\DateTime $createdAt): Post
     {
         $this->createdAt = $createdAt;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSlug(): string
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param string $slug
+     * @return Post
+     */
+    public function setSlug(string $slug): Post
+    {
+        $this->slug = $slug;
         return $this;
     }
 
