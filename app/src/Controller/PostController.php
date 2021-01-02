@@ -92,12 +92,10 @@ class PostController extends AbstractBaseController
         if ($form->isSubmitted() && $form->isValid()) {
 
             $this->postManager->createPost($intent, $post);
-            $this->addFlash('success', $this->translator->trans(
-                'post.created',
-                [
-                    '%deactivationToken%' => $post->getDeactivationToken()
-                ]
-            ));
+            $this->addFlash('sweet.success', [
+                'title' => $this->translator->trans('post.created'),
+                'text' => $this->translator->trans('post.createdNote', ['%token%' => $post->getDeactivationToken()])
+            ]);
 
             return $this->redirectToRoute('post_list_by_intent', ['intent' => $intent]);
         }
@@ -154,7 +152,7 @@ class PostController extends AbstractBaseController
 
             $deactivationToken = $form->getData()['deactivationToken'];
             if (empty($deactivationToken)) {
-                $this->addFlash('danger', $this->translator->trans(
+                $this->addFlash('alert.danger', $this->translator->trans(
                     'post.deactivationTokenEmpty'
                 ));
 
@@ -164,7 +162,7 @@ class PostController extends AbstractBaseController
             try {
                 $this->postManager->deletePostByToken($deactivationToken);
             } catch (PostNotFoundException $exception) {
-                $this->addFlash('warning', $this->translator->trans(
+                $this->addFlash('alert.warning', $this->translator->trans(
                     'post.deactivationTokenInvalid',
                     [
                         '%deactivationToken%' => $deactivationToken
@@ -174,7 +172,7 @@ class PostController extends AbstractBaseController
                 return $this->redirectToRoute('post_delete');
             }
 
-            $this->addFlash('success', $this->translator->trans('post.deleted'));
+            $this->addFlash('alert.success', $this->translator->trans('post.deleted'));
 
             return $this->redirectToRoute('home_index');
         }

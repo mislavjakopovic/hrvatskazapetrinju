@@ -1,11 +1,11 @@
 {% extends '@root/base.html.twig' %}
 
-{% block title %} Obrisi objavu {% endblock %}
+{% block title %} Obriši objavu {% endblock %}
 
 {% block body %}
     <section class="section">
         <div class="section-body">
-            {% include '@root/_flash_messages.html.twig' %}
+            {% include '@root/components/_alert.html.twig' %}
 
             <div class="row">
                 <div class="col-12">
@@ -14,7 +14,7 @@
                             <h3>Molimo vas unesite kod za brisanje koji vam je prikazan nakon stvaranja objave.</h3>
                         </div>
                         <div class="card-body">
-                            {% include '@root/pages/post/_delete_form.html.twig' %}
+                            {% include '@root/pages/post/form/_delete.html.twig' %}
                         </div>
                     </div>
                 </div>
