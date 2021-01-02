@@ -10,6 +10,8 @@ parameters:
         short_name: 'HZP'
         full_name: 'Hrvatska za Petrinju'
         locale: '%locale%'
+        tileserver:
+            path: '/styles/basic-preview/{z}/{x}/{y}.png'
 
 services:
     # default configuration for services in *this* file

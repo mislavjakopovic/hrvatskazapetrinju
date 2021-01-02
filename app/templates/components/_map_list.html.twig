@@ -1,0 +1,18 @@
+{% set tileServer = app.request.schemeAndHttpHost|replace({(platform.domain): 'tileserver' ~ '.' ~ platform.domain}) %}
+
+<div id="leaflet-map-list"
+     {% if height is defined %}style="height: {{ height }}px"{% endif %}
+     data-tile-layer="{{ tileServer ~ platform.tileserver.path }}"
+     data-map-points="{{ mapPoints|json_encode }}">
+</div>
+
+{% for mapPost in mapPosts %}
+    <!-- Everything inside of this element will be rendered in leaflet popup -->
+    <div id="leaflet-content-{{ mapPost.id }}" style="display: none">
+        <img src="{{ asset('images/undraw/' ~ mapPost.category ~ '-' ~ mapPost.intent ~'.svg') }}" style="height: 100px" alt="image">
+        <h6>{{ mapPost.title|truncate(64, true) }}</h6>
+        <p>{{ mapPost.content }}</p>
+        <p class="text-muted">Pregledano {{ mapPost.views }} puta</p>
+        <a href="{{ path('post_view_by_id', {'id': mapPost.id, 'slug': mapPost.slug}) }}" target="_blank" class="btn btn-primary text-white">Pročitajte više</a>
+    </div>
+{% endfor %}

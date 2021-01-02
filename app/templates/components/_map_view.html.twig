@@ -1,0 +1,7 @@
+{% set tileServer = app.request.schemeAndHttpHost|replace({(platform.domain): 'tileserver' ~ '.' ~ platform.domain}) %}
+
+<div id="leaflet-map-view"
+     {% if height is defined %}style="height: {{ height }}px"{% endif %}
+     data-tile-layer="{{ tileServer ~ platform.tileserver.path }}"
+     data-map-point="{{ {id: post.id, latitude: post.latitude, longitude: post.longitude, title: 'Korisnik je ovdje označio svoju lokaciju'}|json_encode }}">
+</div>

@@ -6,46 +6,58 @@
     <section class="section mt-sm-0 mt-5">
         <div class="section-body">
             {% include '@root/components/_alert.html.twig' %}
+        </div>
 
-            <div class="row">
-                <div class="col-12 col-md-6 col-lg-6 mt-lg-0">
-                    <div class="card">
-                        <a class="card-body" href="{{ path('post_list_by_intent', {intent: 'looking'|trans }) }}">
-                            <div class="empty-state" data-height="250" style="height: 250px;">
-                                <img class="img-fluid" src="{{ asset('images/drawkit/hiker-man-colour.svg') }}">
-                            </div>
-                            <div style="text-align: center">
-                                <h2 class="mt-0">Tražim</h2>
-                                <p class="lead">
-                                    Za sve pogođene potresom koji trebaju pomoć
-                                </p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-12 col-md-6 col-lg-6 mt-lg-0">
-                    <div class="card">
-                        <a class="card-body" href="{{ path('post_list_by_intent', {intent: 'offering'|trans }) }}">
-                            <div class="empty-state" data-height="250" style="height: 250px;">
-                                <img class="img-fluid" src="{{ asset('images/drawkit/residency.svg') }}">
-                            </div>
-                            <div style="text-align: center">
-                                <h2 class="mt-0">Nudim</h2>
-                                <p class="lead">
-                                    Za sve koji žele pomoći pogođenima potresom
-                                </p>
-                            </div>
-                        </a>
-                    </div>
+        <div class="row">
+            <div class="col-12 col-md-6 col-lg-6 mt-lg-0">
+                <div class="card">
+                    <a class="card-body" href="{{ path('post_list_by_intent', {intent: 'looking'|trans }) }}">
+                        <div class="empty-state" data-height="250" style="height: 250px;">
+                            <img class="img-fluid" src="{{ asset('images/drawkit/hiker-man-colour.svg') }}">
+                        </div>
+                        <div style="text-align: center">
+                            <h2 class="mt-0">Tražim</h2>
+                            <p class="lead">
+                                Za sve pogođene potresom koji trebaju pomoć
+                            </p>
+                        </div>
+                    </a>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-12">
-                    <h2>Najnovije objave</h2>
+            <div class="col-12 col-md-6 col-lg-6 mt-lg-0">
+                <div class="card">
+                    <a class="card-body" href="{{ path('post_list_by_intent', {intent: 'offering'|trans }) }}">
+                        <div class="empty-state" data-height="250" style="height: 250px;">
+                            <img class="img-fluid" src="{{ asset('images/drawkit/residency.svg') }}">
+                        </div>
+                        <div style="text-align: center">
+                            <h2 class="mt-0">Nudim</h2>
+                            <p class="lead">
+                                Za sve koji žele pomoći pogođenima potresom
+                            </p>
+                        </div>
+                    </a>
                 </div>
             </div>
-            <div class="row">
-                {% include '@root/components/_posts.html.twig' with {'page': 'home'} %}
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <h2>Najnovije objave</h2>
+            </div>
+            {% for latestPost in latestPosts %}
+                <div class="col-12 col-sm-6 col-md-6 col-lg-4">
+                    {% include '@root/components/_post_list.html.twig' with {'page': 'home', 'post': latestPost} %}
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <h2>Karta objava</h2>
+            </div>
+            <div class="col-12">
+                {% include '@root/components/_map_list.html.twig' with {height: 800} %}
             </div>
         </div>
     </section>
@@ -53,9 +65,15 @@
 
 {% block stylesheets %}
     {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/vendor/leaflet.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/vendor/markercluster.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/vendor/markercluster.default.css') }}">
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
+    <script src="{{ asset('js/vendor/leaflet.js') }}"></script>
+    <script src="{{ asset('js/vendor/leaflet.markercluster.js') }}"></script>
+    {{ encore_entry_script_tags('js/init/leaflet') }}
     {{ encore_entry_script_tags('js/pages/home') }}
 {% endblock %}

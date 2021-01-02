@@ -33,7 +33,9 @@
             </div>
             <div class="row">
                 {% for post in posts %}
-                    {% include '@root/components/_posts.html.twig' with {'page': 'list'} %}
+                    <div class="col-12 col-sm-6 col-md-6 col-lg-4">
+                        {% include '@root/components/_post_list.html.twig' with {'page': 'list', 'post': post} %}
+                    </div>
                 {% else %}
                     <div class="col-12">
                         <h2 class="mx-auto">Stranica je prazna, stvorite prvu objavu..</h2>

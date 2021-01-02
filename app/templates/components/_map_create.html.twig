@@ -1,0 +1,3 @@
+{% set tileServer = app.request.schemeAndHttpHost|replace({(platform.domain): 'tileserver' ~ '.' ~ platform.domain}) %}
+
+<div id="leaflet-map-create" data-tile-layer="{{ tileServer ~ platform.tileserver.path }}"></div>

@@ -11,6 +11,7 @@ use App\Helper\RandomStringGenerator;
 use App\Repository\PostRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 class PostManager
@@ -31,16 +32,29 @@ class PostManager
     protected $translator;
 
     /**
+     * @var UrlGeneratorInterface
+     */
+    protected $router;
+
+    /**
      * @param PostRepository $postRepository
      * @param PaginatorInterface $paginator
      * @param TranslatorInterface $translator
+     * @param UrlGeneratorInterface $router
      */
-    public function __construct(PostRepository $postRepository, PaginatorInterface $paginator, TranslatorInterface $translator)
+    public function __construct(
+        PostRepository $postRepository,
+        PaginatorInterface $paginator,
+        TranslatorInterface $translator,
+        UrlGeneratorInterface $router
+    )
     {
         $this->postRepository = $postRepository;
         $this->paginator = $paginator;
         $this->translator = $translator;
+        $this->router = $router;
     }
+
 
     public function createPost(string $intent, Post $post)
     {
@@ -68,6 +82,32 @@ class PostManager
             ['intent' => $intent, 'status' => PostStatusEnum::ACTIVE],
             ['createdAt' => 'DESC']
         );
+    }
+
+    public function getActiveMapPosts(): ?array
+    {
+        return $this->postRepository->findActiveMapPosts();
+    }
+
+    public function transformToMapPoints(?array $mapPosts): array
+    {
+        $mapPoints = [];
+
+        /** @var Post $mapPost */
+        foreach ($mapPosts as $mapPost) {
+            $mapPoints[] = [
+                'id' => $mapPost->getId(),
+                'latitude' => $mapPost->getLatitude(),
+                'longitude' => $mapPost->getLongitude(),
+                'title' => mb_substr($mapPost->getTitle(), 0, 60),
+                'url' => $this->router->generate('post_view_by_id', [
+                    'id' => $mapPost->getId(),
+                    'slug' => $mapPost->getSlug()
+                ])
+            ];
+        }
+
+        return $mapPoints;
     }
 
     public function getActivePostsPaginated(string $intent, int $page, int $perPage): ?PaginationInterface

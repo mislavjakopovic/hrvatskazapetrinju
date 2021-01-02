@@ -63,11 +63,18 @@ class Post
     protected $city;
 
     /**
-     * @var string|null
+     * @var string
      *
-     * @ORM\Column(type="text", nullable=true)
+     * @ORM\Column(type="decimal", precision=11, scale=8, nullable=true)
      */
-    protected $address;
+    private $latitude;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="decimal", precision=11, scale=8, nullable=true)
+     */
+    private $longitude;
 
     /**
      * @var string
@@ -221,20 +228,38 @@ class Post
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getAddress(): ?string
+    public function getLatitude(): string
     {
-        return $this->address;
+        return $this->latitude;
     }
 
     /**
-     * @param string|null $address
+     * @param string $latitude
      * @return Post
      */
-    public function setAddress(?string $address): Post
+    public function setLatitude(string $latitude): Post
     {
-        $this->address = $address;
+        $this->latitude = $latitude;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLongitude(): string
+    {
+        return $this->longitude;
+    }
+
+    /**
+     * @param string $longitude
+     * @return Post
+     */
+    public function setLongitude(string $longitude): Post
+    {
+        $this->longitude = $longitude;
         return $this;
     }
 

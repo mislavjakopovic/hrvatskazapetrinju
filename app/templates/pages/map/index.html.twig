@@ -1,0 +1,35 @@
+{% extends '@root/base.html.twig' %}
+
+{% block title %}Karta objava{% endblock %}
+
+{% block body %}
+    <section class="section mt-sm-0 mt-5">
+        <div class="section-body">
+            {% include '@root/components/_alert.html.twig' %}
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <h2>Karta objava</h2>
+            </div>
+            <div class="col-12">
+                {% include '@root/components/_map_list.html.twig' with {height: 1000} %}
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/vendor/leaflet.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/vendor/markercluster.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/vendor/markercluster.default.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/vendor/leaflet.js') }}"></script>
+    <script src="{{ asset('js/vendor/leaflet.markercluster.js') }}"></script>
+    {{ encore_entry_script_tags('js/init/leaflet') }}
+    {{ encore_entry_script_tags('js/pages/home') }}
+{% endblock %}

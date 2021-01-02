@@ -28,13 +28,6 @@
 </div>
 
 <div class="form-group row mb-4">
-    {{ form_label(form.address, 'Adresa', {'label_attr': {'class': 'col-form-label text-md-right col-12 col-md-1 col-lg-1'}}) }}
-    <div class="col-sm-12 col-md-4 col-lg-10">
-        {{ form_widget(form.address) }}
-    </div>
-</div>
-
-<div class="form-group row mb-4">
     {{ form_label(form.phone, 'Telefon', {'label_attr': {'class': 'col-form-label text-md-right col-12 col-md-1 col-lg-1'}}) }}
     <div class="col-sm-12 col-md-4 col-lg-3">
         {{ form_widget(form.phone, {'attr': {'pattern': '[0-9 ]{5,12}'}}) }}
@@ -46,6 +39,14 @@
     </div>
 </div>
 
+<div class="form-group row mt-5 mb-4">
+    <label class="col-form-label text-md-right col-12 col-md-1 col-lg-1 required" for="post_phone">Lokacija</label>
+    <div class="col-12 col-lg-10 col-md-10">
+        {% include '@root/components/_map_create.html.twig' %}
+        <span>Klikom na kartu označujete vašu lokaciju. Nije obvezna, ali preporučamo da ju ispuniti zbog pregleda i lakšeg kontakta.</span>
+    </div>
+</div>
+
 <div class="form-group row mb-4">
     <div class="mb-3 col-md-12 col-sm-12 offset-lg-7 col-lg-2">
         {{ form_widget(form.save, {label: 'Spremi', 'attr': {'class': 'btn btn-block btn-primary btn-lg'}}) }}
@@ -54,7 +55,6 @@
     <div class="col-md-12 col-sm-12 col-lg-2">
         <a href="{{ path('post_list_by_intent', {'intent': intent}) }}" class="btn btn-block btn-secondary btn-lg">Natrag</a>
     </div>
-
-
 </div>
+
 {{ form_end(form) }}

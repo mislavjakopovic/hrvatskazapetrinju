@@ -9,6 +9,8 @@ prod-set:
 dev-set:
 	ln -sfv docker-compose.override.dev.yaml.dist docker-compose.override.yaml
 
+tiles:
+	wget $(shell cat tiles.txt) -O docker/services/tileserver/resources/map.mbtiles
 up:
 	docker-compose up
 

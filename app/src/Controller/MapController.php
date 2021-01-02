@@ -9,10 +9,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-class HomeController extends AbstractBaseController
+class MapController extends AbstractBaseController
 {
-    protected const LATEST_POSTS_LIMIT = 8;
-
     /**
      * @var PostManager
      */
@@ -30,21 +28,22 @@ class HomeController extends AbstractBaseController
     }
 
     /**
-     * @Route("/", name="home_index")
+     * @Route({
+     *     "hr": "/karta",
+     *     "en": "/map"
+     * }, name="map_index")
      *
      * @return Response
      */
     public function index(): Response
     {
         $mapPosts = $this->postManager->getActiveMapPosts();
-        $latestPosts = $this->postManager->getLatestPosts(self::LATEST_POSTS_LIMIT);
 
         return $this->render(
-            'home/index.html.twig',
+            'map/index.html.twig',
             [
                 'mapPosts' => $mapPosts,
-                'mapPoints' => $this->postManager->transformToMapPoints($mapPosts),
-                'latestPosts' => $latestPosts
+                'mapPoints' => $this->postManager->transformToMapPoints($mapPosts)
             ]
         );
     }

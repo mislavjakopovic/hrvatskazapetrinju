@@ -36,6 +36,10 @@ services:
             MYSQL_RANDOM_ROOT_PASSWORD: 'true'
         volumes:
             - volume-mariadb-hzp:/var/lib/mysql
-
+    tileserver-hzp:
+        image: maptiler/tileserver-gl:v3.1.1
+        command: -p 8080
+        volumes:
+            - ./docker/services/tileserver/resources:/data
 volumes:
     volume-mariadb-hzp:

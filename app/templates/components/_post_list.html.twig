@@ -1,0 +1,58 @@
+<article class="article article-style-c">
+    <div class="article-header">
+        <div class="article-title">
+            <b style="color: white" href="#">
+                {% if page == 'home' %}
+                    {% if post.intent == 'looking' %}
+                        Tražim
+                    {% elseif post.intent == 'offering' %}
+                        Nudim
+                    {% endif %} - {{ post.category|trans }}
+                {% else %}
+                    {{ post.category|trans }}
+                {% endif %}
+            </b>
+        </div>
+        <div class="article-image"
+             data-background="{{ asset('images/undraw/' ~ post.category ~ '-' ~ post.intent ~'.svg') }}"></div>
+    </div>
+    <div class="article-details">
+        <div class="row">
+            <div class="col-10">
+                <div class="article-category">
+                    <div class="bullet"></div>
+                    <a href="#">{{ post.createdAt|elapsed }}</a><br>
+                </div>
+            </div>
+        </div>
+        <div class="article-title">
+            <h2>
+                <a href="{{ path('post_view_by_id', {'id': post.id, 'slug': post.slug}) }}">{{ post.title|truncate(64, true) }}</a>
+            </h2>
+        </div>
+        <p class="card-max-height">{{ post.content|striptags|truncate(75, true) }} </p>
+        <li class="media">
+            <img alt="image" class="mr-3 rounded-circle" width="45"
+                 src="{{ asset('images/avatar/avatar-1.png') }}">
+            <div class="media-body">
+                <div class="mt-0 mb-1 font-weight-bold">{{ post.author }}</div>
+                <div class="text-small font-weight-600 text-bold">
+                    <i class="fas fa-map-marker-alt"></i>
+                    {{ post.city }}
+                </div>
+            </div>
+        </li>
+        <hr>
+        <div class="row">
+            <div class="col-9">
+                {% include '@root/components/social/_facebook_share_button.html.twig' with {'url': path('post_view_by_id', {'id': post.id, 'slug': post.slug})} %}
+            </div>
+            <div class="col-3">
+                <div class="text-small font-weight-600 text-bold mt-1 text-right">
+                    <i class="fas fa-eye"></i>
+                    {{ post.views }}
+                </div>
+            </div>
+        </div>
+    </div>
+</article>

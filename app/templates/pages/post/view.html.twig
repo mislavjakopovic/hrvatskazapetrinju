@@ -1,6 +1,6 @@
 {% extends '@root/base.html.twig' %}
 
-{% block title %} {{ post.title}} {% endblock %}
+{% block title %} {{ post.title }} {% endblock %}
 
 {% block body %}
     <section class="section mt-5 mt-md-5 mt-lg-1 mt-sm-5">
@@ -17,7 +17,8 @@
                             <div class="article-category">
                                 <b>Kategorija: </b><a href="#">{{ post.category|trans }}</a>
                                 <div class="bullet"></div>
-                                <a href="#">{{ post.createdAt|elapsed }}</a><hr>
+                                <a href="#">{{ post.createdAt|elapsed }}</a>
+                                <hr>
                             </div>
                             <div class="article-details">
                                 <h5>Sadržaj </h5>
@@ -43,7 +44,10 @@
                                         <div class="article-user">
                                             <div class="article-user-details">
                                                 <div class="user-detail-name mt-lg-3">
-                                                    <p style="display:inline-block;" data-toggle="tooltip" data-placement="top" title="Pregleda"><i style="font-size: 16px;" class="fas fa-eye"></i></p>
+                                                    <p style="display:inline-block;" data-toggle="tooltip"
+                                                       data-placement="top" title="Pregleda"><i style="font-size: 16px;"
+                                                                                                class="fas fa-eye"></i>
+                                                    </p>
                                                     <span style="display: inline; font-size: 20px">{{ post.views }}</span>
                                                 </div>
                                             </div>
@@ -55,6 +59,31 @@
                     </article>
                 </div>
             </div>
+            {% if post.latitude and post.longitude %}
+                <div class="row">
+                    <div class="col-12">
+                        <h2>Karta objave</h2>
+                    </div>
+                    <div class="col-12">
+                        {% include '@root/components/_map_view.html.twig' with {height: 800} %}
+                    </div>
+                </div>
+            {% endif %}
         </div>
     </section>
 {% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/vendor/leaflet.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/vendor/markercluster.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/vendor/markercluster.default.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/vendor/leaflet.js') }}"></script>
+    <script src="{{ asset('js/vendor/leaflet.markercluster.js') }}"></script>
+    {{ encore_entry_script_tags('js/init/leaflet') }}
+{% endblock %}
+

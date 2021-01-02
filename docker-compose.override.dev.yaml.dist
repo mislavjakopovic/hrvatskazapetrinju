@@ -13,7 +13,7 @@ services:
             APP_ENV: 'dev'
         ports:
             - 41306:3306
-    phpmyadmin:
+    phpmyadmin-hzp:
         image: phpmyadmin/phpmyadmin
         links:
             - mariadb-hzp
@@ -21,3 +21,6 @@ services:
             PMA_HOST: 'mariadb-hzp'
         ports:
             - 41081:80
+    tileserver-hzp:
+        ports:
+            - 41090:8080

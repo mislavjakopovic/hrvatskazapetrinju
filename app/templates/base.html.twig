@@ -113,8 +113,14 @@
             <div class="container">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a href="{{ path('home_index') }}" class="nav-link"><i
-                                    class="fas fa-home"></i><span>Početna</span></a>
+                        <a href="{{ path('home_index') }}" class="nav-link">
+                            <i class="fas fa-home"></i><span>Početna</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('map_index') }}" class="nav-link">
+                            <i class="fas fa-map-marked-alt"></i><span>Karta</span>
+                        </a>
                     </li>
                     <li class="nav-item dropdown">
                         <a href="#" data-toggle="dropdown" class="nav-link has-dropdown"><i
@@ -128,7 +134,7 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a href="#" data-toggle="dropdown" class="nav-link has-dropdown"><i
-                                    class="fas fa-th-list"></i><span>Ostalo</span></a>
+                                    class="fas fa-hammer"></i><span>Ostalo</span></a>
                         <ul class="dropdown-menu">
                             <li class="nav-item"><a href="{{ path('post_delete') }}" class="nav-link">Obriši objavu</a>
                             </li>
