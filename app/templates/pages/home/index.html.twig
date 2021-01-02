@@ -8,35 +8,36 @@
             {% include '@root/components/_alert.html.twig' %}
         </div>
 
-        <div class="row">
-            <div class="col-12 col-md-6 col-lg-6 mt-lg-0">
-                <div class="card">
-                    <a class="card-body" href="{{ path('post_list_by_intent', {intent: 'looking'|trans }) }}">
-                        <div class="empty-state" data-height="250" style="height: 250px;">
-                            <img class="img-fluid" src="{{ asset('images/drawkit/hiker-man-colour.svg') }}">
-                        </div>
-                        <div style="text-align: center">
-                            <h2 class="mt-0">Tražim</h2>
-                            <p class="lead">
-                                Za sve pogođene potresom koji trebaju pomoć
-                            </p>
-                        </div>
-                    </a>
+            <div class="row">
+                <div class="col-12 col-md-6 col-lg-6 mt-lg-0">
+                    <div class="card">
+                        <a class="card-body" href="{{ path('post_list_by_intent', {intent: 'looking'|trans }) }}">
+                            <div class="empty-state home-intent-card" data-height="340">
+                                <img class="img-fluid" src="{{ asset('images/drawkit/hiker-man-colour.svg') }}">
+                            </div>
+                            <div style="text-align: center">
+                                <h2 class="mt-0">Tražim</h2>
+                                <p class="lead">
+                                    Za sve pogođene potresom koji trebaju pomoć
+                                </p>
+                            </div>
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <div class="col-12 col-md-6 col-lg-6 mt-lg-0">
-                <div class="card">
-                    <a class="card-body" href="{{ path('post_list_by_intent', {intent: 'offering'|trans }) }}">
-                        <div class="empty-state" data-height="250" style="height: 250px;">
-                            <img class="img-fluid" src="{{ asset('images/drawkit/residency.svg') }}">
-                        </div>
-                        <div style="text-align: center">
-                            <h2 class="mt-0">Nudim</h2>
-                            <p class="lead">
-                                Za sve koji žele pomoći pogođenima potresom
-                            </p>
-                        </div>
-                    </a>
+                <div class="col-12 col-md-6 col-lg-6 mt-lg-0">
+                    <div class="card">
+                        <a class="card-body" href="{{ path('post_list_by_intent', {intent: 'offering'|trans }) }}">
+                            <div class="empty-state home-intent-card" data-height="340">
+                                <img class="img-fluid" src="{{ asset('images/drawkit/residency.svg') }}">
+                            </div>
+                            <div style="text-align: center">
+                                <h2 class="mt-0">Nudim</h2>
+                                <p class="lead">
+                                    Za sve koji žele pomoći pogođenima potresom
+                                </p>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
