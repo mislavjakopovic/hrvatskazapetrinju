@@ -8,7 +8,6 @@ use App\Entity\Post;
 use App\Enum\PostStatusEnum;
 use App\Exception\PostNotFoundException;
 use App\Helper\RandomStringGenerator;
-use App\Helper\SlugGenerator;
 use App\Repository\PostRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -117,7 +116,7 @@ class PostManager
 
     protected function generateSlug(string $title): string
     {
-        return SlugGenerator::generate($title);
+        return \URLify::slug($title);
     }
 
     protected function generateDeactivationToken(): string
