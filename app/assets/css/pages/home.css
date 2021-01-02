@@ -70,3 +70,15 @@
         width: 50px;
     }
 }
+
+@-moz-document url-prefix() {
+    .home-intent-card {
+        height: 320px;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .logo-mobile-text {
+        right:100px;
+    }
+}
