@@ -6,6 +6,6 @@ $(document).ready(function () {
     }
 });
 
-$('#create-post-modal').on('hidden.bs.modal', function (e) {
-    Cookies.set('post-instructions', 'read');
+$('#create-post-modal').on('hidden.bs.modal', function () {
+    Cookies.set('post-instructions', 'read', {expires: 365 * 10});
 });
