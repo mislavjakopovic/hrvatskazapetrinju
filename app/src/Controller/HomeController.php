@@ -11,7 +11,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class HomeController extends AbstractBaseController
 {
-    protected const LATEST_POSTS_LIMIT = 8;
+    protected const LATEST_POSTS_LIMIT = 9;
 
     /**
      * @var PostManager
