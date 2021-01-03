@@ -82,3 +82,9 @@
         right:100px;
     }
 }
+
+@media screen and (max-width: 360px) {
+    .card-max-height{
+        height: 80px;
+    }
+}
