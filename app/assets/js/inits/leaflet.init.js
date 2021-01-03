@@ -41,6 +41,8 @@ if (leafletMapCreateElement.length) {
         $('#post_latitude').val(e.latlng.lat);
         $('#post_longitude').val(e.latlng.lng);
     });
+
+    map.invalidateSize();
 } else if (leafletMapListElement.length) {
     let map = createMap(leafletMapListElement);
     let markers = L.markerClusterGroup();
@@ -61,6 +63,7 @@ if (leafletMapCreateElement.length) {
     }
 
     map.addLayer(markers);
+    map.invalidateSize();
 } else if (leafletMapViewElement.length) {
     let mapPoint = leafletMapViewElement.data('map-point');
     let map = createMap(leafletMapViewElement, {
@@ -80,4 +83,5 @@ if (leafletMapCreateElement.length) {
     markers.addLayer(marker);
 
     map.addLayer(markers);
+    map.invalidateSize();
 }
