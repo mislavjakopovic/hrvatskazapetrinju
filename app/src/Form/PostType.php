@@ -8,6 +8,7 @@ use App\Entity\Post;
 use App\Enum\PostCategoryEnum;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
@@ -61,8 +62,11 @@ class PostType extends AbstractType
             ->add('content', TextareaType::class, [
                 'required' => true,
             ])
+            ->add('email', EmailType::class, [
+                'required' => false,
+            ])
             ->add('phone', TelType::class, [
-                'required' => true,
+                'required' => false,
             ])
             ->add('save', SubmitType::class);
     }

@@ -31,7 +31,13 @@
                                         <img alt="image" src="{{ asset('images/avatar/avatar-1.png') }}">
                                         <div class="article-user-details">
                                             <div class="user-detail-name">
-                                                <a href="tel:{{ post.phone }}">{{ post.author }}</a>
+                                                {% if post.phone is not empty %}
+                                                    <a href="tel:{{ post.phone }}">{{ post.author }}</a>
+                                                {% elseif post.email is not empty %}
+                                                    <a href="mailto:{{ post.email }}">{{ post.author }}</a>
+                                                {% else %}
+                                                    <a href="#">{{ post.author }}</a>
+                                                {% endif %}
                                             </div>
                                             <div class="text-job">
                                                 {{ post.phone }} ({{ post.city }})
@@ -74,7 +80,7 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" crossorigin="" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" crossorigin=""/>
     <link rel="stylesheet" href="{{ asset('css/vendor/markercluster.css') }}">
     <link rel="stylesheet" href="{{ asset('css/vendor/markercluster.default.css') }}">
 {% endblock %}

@@ -1,0 +1,4 @@
+post:
+    oneNotBlank: 'Barem jedno od polja "{{ value }}" nebi smjelo biti prazno'
+    email: 'email'
+    phone: 'telefon'

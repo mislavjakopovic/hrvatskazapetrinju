@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use App\Validator\Constraint as AppAssert;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PostRepository")
+ * @AppAssert\OneNotBlank(fields = {"phone", "email"}, message = "post.oneNotBlank", groups = {"create"})
  */
 class Post
 {
@@ -77,11 +79,18 @@ class Post
     private $longitude;
 
     /**
-     * @var string
+     * @var string|null
      *
-     * @ORM\Column(type="string", length=32)
+     * @ORM\Column(type="string", length=128, nullable=true)
+     * @Assert\Length(max=128, groups={"create"})
+     */
+    protected $email;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(type="string", length=32, nullable=true)
      * @Assert\Length(max=32, groups={"create"})
-     * @Assert\NotBlank(groups={"create"})
      */
     protected $phone;
 
@@ -274,18 +283,36 @@ class Post
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getPhone(): string
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param string|null $email
+     * @return Post
+     */
+    public function setEmail(?string $email): Post
+    {
+        $this->email = $email;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getPhone(): ?string
     {
         return $this->phone;
     }
 
     /**
-     * @param string $phone
+     * @param string|null $phone
      * @return Post
      */
-    public function setPhone(string $phone): Post
+    public function setPhone(?string $phone): Post
     {
         $this->phone = $phone;
         return $this;
