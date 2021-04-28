@@ -3,3 +3,6 @@
 2. Download Open Map Tiles: `make tiles`
 3. Set environment: `make dev-set` or `make prod-set`
 4. Build and run the application: `docker compose up --build`
+
+## Website
+https://hrvatskazapetrinju.com/
